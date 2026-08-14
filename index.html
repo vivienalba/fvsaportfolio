@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Francese Vivien Alba — Remote Operations & Admin</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+  --pink: #e85d8a;
+  --pink-dark: #c83f6d;
+  --pink-light: #fde8ef;
+  --pink-soft: #fff5f8;
+
+  --ink: #29151e;
+  --muted: #806a73;
+
+  --white: #ffffff;
+  --border: rgba(41, 21, 30, 0.10);
+
+  --shadow: 0 18px 50px rgba(41, 21, 30, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--pink-soft);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--pink);
+  color: white;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.container {
+  width: min(1120px, calc(100% - 48px));
+  margin: auto;
+}
+
+section {
+  padding: 110px 0;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+
+  color: var(--pink);
+  margin-bottom: 14px;
+}
+
+.section-label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pink);
+}
+
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.section-description {
+  max-width: 520px;
+  margin-top: 18px;
+
+  color: var(--muted);
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: min(1080px, calc(100% - 32px));
+
+  z-index: 100;
+
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(41,21,30,.08);
+
+  border-radius: 18px;
+
+  box-shadow: 0 8px 30px rgba(41,21,30,.06);
+}
+
+.nav-inner {
+  height: 64px;
+
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.logo span {
+  color: var(--pink);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  list-style: none;
+}
+
+.nav-links a {
+  display: block;
+
+  padding: 9px 13px;
+
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: var(--muted);
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease;
+}
+
+.nav-links a:hover {
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  transform: translateY(-1px);
+}
+
+.nav-links .nav-contact {
+  background: var(--pink);
+  color: white;
+  margin-left: 5px;
+}
+
+.nav-links .nav-contact:hover {
+  background: var(--pink-dark);
+  color: white;
+}
+
+
+/* MOBILE NAV */
+
+.mobile-menu {
+  display: none;
+
+  background: var(--pink);
+  color: white;
+
+  border: none;
+  border-radius: 9px;
+
+  padding: 8px 12px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+
+  padding-top: 120px;
+
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  right: -180px;
+  top: 80px;
+
+  background: var(--pink-light);
+
+  border-radius: 50%;
+
+  filter: blur(2px);
+}
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+
+  width: 240px;
+  height: 240px;
+
+  left: -100px;
+  bottom: 60px;
+
+  background: #ffeef3;
+
+  border-radius: 50%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+
+  gap: 70px;
+
+  align-items: center;
+}
+
+.available {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  padding: 8px 13px;
+
+  border-radius: 100px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  color: var(--muted);
+
+  box-shadow: 0 8px 20px rgba(41,21,30,.04);
+
+  animation: fadeUp .8s ease both;
+}
+
+.available-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #42c887;
+
+  box-shadow: 0 0 0 4px rgba(66,200,135,.12);
+}
+
+.hero h1 {
+  margin-top: 24px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(58px, 8vw, 92px);
+
+  line-height: .96;
+
+  letter-spacing: -.045em;
+
+  animation: fadeUp .9s ease .1s both;
+}
+
+.hero h1 em {
+  color: var(--pink);
+  font-weight: 500;
+}
+
+.hero-description {
+  max-width: 650px;
+
+  margin-top: 25px;
+
+  font-size: 18px;
+
+  color: var(--muted);
+
+  animation: fadeUp .9s ease .2s both;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 32px;
+
+  animation: fadeUp .9s ease .3s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 21px;
+
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: var(--pink);
+  color: white;
+
+  box-shadow: 0 10px 25px rgba(232,93,138,.22);
+}
+
+.btn-primary:hover {
+  background: var(--pink-dark);
+
+  box-shadow: 0 14px 30px rgba(232,93,138,.30);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--ink);
+
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  box-shadow: var(--shadow);
+}
+
+
+/* HERO CARD */
+
+.hero-card {
+  position: relative;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 24px;
+
+  padding: 30px;
+
+  box-shadow: var(--shadow);
+
+  transform: rotate(2deg);
+
+  transition: transform .35s ease;
+}
+
+.hero-card:hover {
+  transform: rotate(0deg) translateY(-6px);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.card-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+
+  color: var(--muted);
+}
+
+.card-icon {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  background: var(--pink-light);
+
+  color: var(--pink);
+
+  border-radius: 50%;
+
+  font-size: 17px;
+}
+
+.card-name {
+  margin-top: 27px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 29px;
+}
+
+.card-role {
+  margin-top: 4px;
+
+  color: var(--pink);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.card-list {
+  list-style: none;
+
+  margin-top: 25px;
+}
+
+.card-list li {
+  padding: 11px 0;
+
+  border-top: 1px dashed var(--border);
+
+  font-size: 13px;
+
+  color: var(--muted);
+}
+
+.card-list li::before {
+  content: "✦";
+
+  color: var(--pink);
+
+  margin-right: 8px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+  padding: 0 0 100px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 35px rgba(41,21,30,.05);
+}
+
+.stat {
+  padding: 30px;
+
+  border-right: 1px solid var(--border);
+
+  transition: background .25s ease;
+}
+
+.stat:last-child {
+  border-right: none;
+}
+
+.stat:hover {
+  background: var(--pink-soft);
+}
+
+.stat-number {
+  font-family: "Playfair Display", serif;
+
+  color: var(--pink);
+
+  font-size: 42px;
+
+  line-height: 1;
+}
+
+.stat-label {
+  margin-top: 8px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-grid {
+  display: grid;
+
+  grid-template-columns: .65fr 1.35fr;
+
+  gap: 80px;
+
+  align-items: start;
+}
+
+.about-text {
+  font-size: 20px;
+
+  line-height: 1.7;
+
+  color: #49353d;
+}
+
+.about-text strong {
+  color: var(--ink);
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.experience-list {
+  margin-top: 55px;
+}
+
+.experience {
+  display: grid;
+
+  grid-template-columns: 180px 1fr;
+
+  gap: 45px;
+
+  padding: 35px 0;
+
+  border-top: 1px solid var(--border);
+
+  transition: padding-left .25s ease;
+}
+
+.experience:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.experience:hover {
+  padding-left: 12px;
+}
+
+.experience-date {
+  color: var(--pink);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.experience-title {
+  font-family: "Playfair Display", serif;
+
+  font-size: 25px;
+}
+
+.experience-company {
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+.experience ul {
+  margin-top: 18px;
+
+  padding-left: 20px;
+
+  color: #604b53;
+
+  font-size: 14px;
+}
+
+.experience li {
+  margin-bottom: 8px;
+}
+
+.experience li::marker {
+  color: var(--pink);
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+
+  margin-top: 50px;
+}
+
+.skill {
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 26px;
+
+  min-height: 190px;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.skill:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(232,93,138,.3);
+
+  box-shadow: var(--shadow);
+}
+
+.skill-number {
+  color: var(--pink);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: .08em;
+}
+
+.skill h3 {
+  margin-top: 15px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 21px;
+}
+
+.skill p {
+  margin-top: 10px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.projects-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 18px;
+
+  margin-top: 50px;
+}
+
+.project {
+  position: relative;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 18px;
+
+  padding: 30px;
+
+  overflow: hidden;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.project::after {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  right: -40px;
+  bottom: -40px;
+
+  border-radius: 50%;
+
+  background: var(--pink-light);
+
+  transition: transform .3s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+
+  box-shadow: var(--shadow);
+}
+
+.project:hover::after {
+  transform: scale(1.5);
+}
+
+.project-number {
+  font-size: 11px;
+
+  color: var(--pink);
+
+  font-weight: 700;
+}
+
+.project h3 {
+  margin-top: 16px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 23px;
+}
+
+.project p {
+  margin-top: 10px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+}
+
+.project-tools {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-top: 20px;
+}
+
+.project-tools span {
+  padding: 5px 9px;
+
+  border-radius: 100px;
+
+  background: var(--pink-light);
+
+  color: var(--pink-dark);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CERTIFICATIONS
+========================================================= */
+
+.certifications {
+  background: white;
+}
+
+.cert-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 45px;
+}
+
+.cert {
+  padding: 15px 19px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 100px;
+
+  background: var(--pink-soft);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    transform .2s ease,
+    background .2s ease;
+}
+
+.cert:hover {
+  transform: translateY(-3px);
+
+  background: var(--pink-light);
+}
+
+.cert::before {
+  content: "✓";
+
+  color: var(--pink);
+
+  margin-right: 8px;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact {
+  padding: 110px 0 50px;
+}
+
+.contact-box {
+  position: relative;
+
+  background: var(--pink);
+
+  color: white;
+
+  border-radius: 28px;
+
+  padding: 65px;
+
+  overflow: hidden;
+}
+
+.contact-box::before {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  right: -90px;
+  top: -120px;
+
+  border-radius: 50%;
+
+  border: 45px solid rgba(255,255,255,.10);
+}
+
+.contact-box::after {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  left: -80px;
+  bottom: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.08);
+}
+
+.contact-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 700px;
+}
+
+.contact-box .section-label {
+  color: white;
+}
+
+.contact-box .section-label::before {
+  background: white;
+}
+
+.contact-title {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(38px, 5vw, 58px);
+
+  line-height: 1.05;
+
+  margin-top: 5px;
+}
+
+.contact-text {
+  margin-top: 18px;
+
+  color: rgba(255,255,255,.82);
+
+  font-size: 15px;
+}
+
+.contact-button {
+  display: inline-flex;
+
+  margin-top: 28px;
+
+  padding: 14px 22px;
+
+  background: white;
+
+  color: var(--pink-dark);
+
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.contact-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 12px 30px rgba(80,20,40,.2);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  padding: 30px 0 45px;
+}
+
+.footer-inner {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid var(--border);
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+.footer-email {
+  color: var(--pink-dark);
+
+  text-decoration: none;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(25px);
+
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  section {
+    padding: 80px 0;
+  }
+
+  .container {
+    width: min(100% - 32px, 650px);
+  }
+
+  .nav-links {
+    display: none;
+
+    position: absolute;
+
+    top: 70px;
+    left: 0;
+    right: 0;
+
+    padding: 12px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    flex-direction: column;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    width: 100%;
+  }
+
+  .nav-links .nav-contact {
+    margin-left: 0;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .hero {
+    padding-top: 120px;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .hero-card {
+    max-width: 500px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat:last-child {
+    border-bottom: none;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .experience {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .contact-box {
+    padding: 45px 30px;
+  }
+}
+
+
+@media (max-width: 520px) {
+
+  .hero h1 {
+    font-size: 55px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .skills-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     NAVIGATION
+======================================================= -->
+
+<nav class="navbar">
+
+  <div class="nav-inner">
+
+    <div class="logo">
+      F.V. <span>ALBA</span>
+    </div>
+
+    <button class="mobile-menu" id="mobileMenu">
+      MENU
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+
+      <li>
+        <a href="#about">About</a>
+      </li>
+
+      <li>
+        <a href="#experience">Experience</a>
+      </li>
+
+      <li>
+        <a href="#skills">Skills</a>
+      </li>
+
+      <li>
+        <a href="#projects">Projects</a>
+      </li>
+
+      <li>
+        <a href="#certifications">Certifications</a>
+      </li>
+
+      <!-- TALLY CONTACT -->
+      <li>
+        <a
+          href="https://tally.so/r/LZxNbv"
+          target="_blank"
+          rel="noopener"
+          class="nav-contact"
+        >
+          Contact
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+
+</nav>
+
+
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<header class="hero">
+
+  <div class="container hero-content">
+
+    <div>
+
+      <div class="available">
+        <span class="available-dot"></span>
+        Available for remote work · Full-time
+      </div>
+
+      <h1>
+        Francese<br>
+        <em>Vivien Alba.</em>
+      </h1>
+
+      <p class="hero-description">
+        Remote Operations & Administrative Professional helping
+        teams turn scattered tasks, systems, and information into
+        organized workflows that actually run.
+      </p>
+
+      <div class="hero-buttons">
+
+        <!-- TALLY -->
+        <a
+          href="https://tally.so/r/LZxNbv"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary"
+        >
+          Let's Work Together →
+        </a>
+
+        <a
+          href="#experience"
+          class="btn btn-secondary"
+        >
+          View My Experience
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- INTERACTIVE PROFILE CARD -->
+
+    <div class="hero-card">
+
+      <div class="card-top">
+
+        <span class="card-label">
+          Profile / 01
+        </span>
+
+        <div class="card-icon">
+          ✦
+        </div>
+
+      </div>
+
+      <div class="card-name">
+        Francese Vivien Alba
+      </div>
+
+      <div class="card-role">
+        Remote Operations & Admin
+      </div>
+
+      <ul class="card-list">
+
+        <li>
+          Operations & Administrative Support
+        </li>
+
+        <li>
+          AI & Workflow Automation
+        </li>
+
+        <li>
+          CRM & Client Management
+        </li>
+
+        <li>
+          Social Media & Community Operations
+        </li>
+
+        <li>
+          Remote / Flexible Time Zone Coverage
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- =======================================================
+     STATS
+======================================================= -->
+
+<div class="stats">
+
+  <div class="container">
+
+    <div class="stats-grid">
+
+      <div class="stat">
+
+        <div class="stat-number">
+          30%
+        </div>
+
+        <div class="stat-label">
+          Labor cost reduction through paperless operations
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="stat-number">
+          10%
+        </div>
+
+        <div class="stat-label">
+          Office overhead reduction
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="stat-number">
+          2
+        </div>
+
+        <div class="stat-label">
+          IBM AI & Agentic AI professional certifications
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section id="about">
+
+  <div class="container reveal">
+
+    <div class="about-grid">
+
+      <div>
+
+        <div class="section-label">
+          About me
+        </div>
+
+        <h2 class="section-title">
+          I make the messy stuff feel simple.
+        </h2>
+
+      </div>
+
+
+      <div>
+
+        <p class="about-text">
+
+          I build order into remote operations, turning scattered
+          files, inboxes, client conversations, and repetitive
+          processes into systems that are easier to manage.
+
+          <br><br>
+
+          My background spans client account management,
+          digital record keeping, administrative support,
+          social media operations, and AI-powered workflow
+          automation.
+
+          <br><br>
+
+          I'm at my best when a team needs someone who can
+          <strong>take ownership, organize the details, and quietly
+          keep things moving.</strong>
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     EXPERIENCE
+======================================================= -->
+
+<section id="experience">
+
+  <div class="container reveal">
+
+    <div class="section-label">
+      Experience
+    </div>
+
+    <h2 class="section-title">
+      Where I've done the work.
+    </h2>
+
+    <p class="section-description">
+      Different industries, same focus: making operations
+      more organized, efficient, and dependable.
+    </p>
+
+
+    <div class="experience-list">
+
+
+      <!-- ROLE 1 -->
+
+      <div class="experience">
+
+        <div class="experience-date">
+          OCT 2025 — JUN 2026
+        </div>
+
+        <div>
+
+          <h3 class="experience-title">
+            AI Operations & Community Operations Specialist
+          </h3>
+
+          <div class="experience-company">
+            NoStagnation Academy / Auramax Method — Remote
+          </div>
+
+          <ul>
+
+            <li>
+              Managed client accounts in Trainerize,
+              tracking progress and delivering feedback
+              across coaching programs.
+            </li>
+
+            <li>
+              Built scheduling and progress-tracking
+              systems using Notion and Google Sheets.
+            </li>
+
+            <li>
+              Managed social media operations across
+              multiple Instagram accounts.
+            </li>
+
+            <li>
+              Designed AI-powered workflows using Claude AI
+              for captions, carousel copy, and client summaries.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ROLE 2 -->
+
+      <div class="experience">
+
+        <div class="experience-date">
+          NOV 2023 — AUG 2025
+        </div>
+
+        <div>
+
+          <h3 class="experience-title">
+            Data & Operations Support
+          </h3>
+
+          <div class="experience-company">
+            SailMark Heavy Equipment Sales and Rentals — Manila
+          </div>
+
+          <ul>
+
+            <li>
+              Led the transition to a paperless practice,
+              implementing an electronic booking system.
+            </li>
+
+            <li>
+              Reduced labor costs by 30% and office overhead
+              by 10%.
+            </li>
+
+            <li>
+              Maintained accurate records across digital
+              databases and spreadsheets.
+            </li>
+
+            <li>
+              Managed professional email correspondence
+              and daily administrative operations.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ROLE 3 -->
+
+      <div class="experience">
+
+        <div class="experience-date">
+          FEB 2021 — MAR 2022
+        </div>
+
+        <div>
+
+          <h3 class="experience-title">
+            Administrative & Creative Support Specialist
+          </h3>
+
+          <div class="experience-company">
+            Independent Contractor, Upwork — Remote
+          </div>
+
+          <ul>
+
+            <li>
+              Managed emails, phone calls, and appointment
+              scheduling for clients.
+            </li>
+
+            <li>
+              Organized digital files and improved
+              document accessibility.
+            </li>
+
+            <li>
+              Designed presentations and edited
+              photo/video content for marketing use.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SKILLS
+======================================================= -->
+
+<section id="skills">
+
+  <div class="container reveal">
+
+    <div class="section-label">
+      Skills & Tools
+    </div>
+
+    <h2 class="section-title">
+      What I can bring to your team.
+    </h2>
+
+    <p class="section-description">
+      A mix of operations, technology, communication,
+      and creative skills.
+    </p>
+
+
+    <div class="skills-grid">
+
+
+      <div class="skill">
+
+        <div class="skill-number">
+          01 / OPERATIONS
+        </div>
+
+        <h3>
+          Operations & Admin
+        </h3>
+
+        <p>
+          Digital record keeping, data management,
+          email management, scheduling, client support,
+          project coordination, and administrative operations.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-number">
+          02 / CRM
+        </div>
+
+        <h3>
+          CRM & Workflow
+        </h3>
+
+        <p>
+          GoHighLevel, HubSpot, Trainerize,
+          Monday.com, ClickUp, and GitHub.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-number">
+          03 / PRODUCTIVITY
+        </div>
+
+        <h3>
+          Productivity
+        </h3>
+
+        <p>
+          Notion, Google Sheets, Google Slides,
+          Microsoft Excel, Word, PowerPoint,
+          Teams, and Microsoft 365.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-number">
+          04 / CREATIVE
+        </div>
+
+        <h3>
+          Content & Design
+        </h3>
+
+        <p>
+          Canva, Adobe Photoshop, content creation,
+          video editing, social media management,
+          and community management.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-number">
+          05 / AI
+        </div>
+
+        <h3>
+          AI & Automation
+        </h3>
+
+        <p>
+          Claude AI, ElevenLabs, n8n, Make.com,
+          GoHighLevel automation, and prompt engineering.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-number">
+          06 / REMOTE
+        </div>
+
+        <h3>
+          Virtual Assistance
+        </h3>
+
+        <p>
+          Remote client support, cross-platform
+          coordination, project management, and
+          flexible time-zone coverage.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     PROJECTS
+======================================================= -->
+
+<section id="projects">
+
+  <div class="container reveal">
+
+    <div class="section-label">
+      Selected work
+    </div>
+
+    <h2 class="section-title">
+      Things I've built.
+    </h2>
+
+    <p class="section-description">
+      A few examples of systems and workflows I've
+      worked on across operations and client support.
+    </p>
+
+
+    <div class="projects-grid">
+
+
+      <div class="project">
+
+        <div class="project-number">
+          PROJECT / 01
+        </div>
+
+        <h3>
+          Client Onboarding Automation
+        </h3>
+
+        <p>
+          Streamlined new client intake for coaching
+          programs, reducing manual setup steps and
+          getting members active faster.
+        </p>
+
+        <div class="project-tools">
+          <span>Notion</span>
+          <span>Trainerize</span>
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-number">
+          PROJECT / 02
+        </div>
+
+        <h3>
+          Instagram Content System
+        </h3>
+
+        <p>
+          Built a repeatable content pipeline for
+          captions, carousels, and stories while
+          keeping posting consistent across accounts.
+        </p>
+
+        <div class="project-tools">
+          <span>Canva</span>
+          <span>Claude AI</span>
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-number">
+          PROJECT / 03
+        </div>
+
+        <h3>
+          Client Progress Tracker
+        </h3>
+
+        <p>
+          Designed a Google Sheets and Notion tracker
+          giving coaches a clearer view of client
+          adherence and progress.
+        </p>
+
+        <div class="project-tools">
+          <span>Google Sheets</span>
+          <span>Notion</span>
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-number">
+          PROJECT / 04
+        </div>
+
+        <h3>
+          Paperless Operations Overhaul
+        </h3>
+
+        <p>
+          Moved booking and records processes into
+          a digital workflow, reducing labor costs
+          by 30% and office overhead by 10%.
+        </p>
+
+        <div class="project-tools">
+          <span>Digital Records</span>
+          <span>Operations</span>
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-number">
+          PROJECT / 05
+        </div>
+
+        <h3>
+          Email Workflow Automation
+        </h3>
+
+        <p>
+          Created templated, AI-assisted responses
+          for recurring client questions while
+          maintaining a personal tone.
+        </p>
+
+        <div class="project-tools">
+          <span>Claude AI</span>
+          <span>Automation</span>
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-number">
+          PROJECT / 06
+        </div>
+
+        <h3>
+          Marketing Visuals
+        </h3>
+
+        <p>
+          Produced photo and video assets for
+          social promotions, from editing through
+          final campaign-ready export.
+        </p>
+
+        <div class="project-tools">
+          <span>Canva</span>
+          <span>Adobe</span>
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CERTIFICATIONS
+======================================================= -->
+
+<section id="certifications" class="certifications">
+
+  <div class="container reveal">
+
+    <div class="section-label">
+      Certifications
+    </div>
+
+    <h2 class="section-title">
+      Always learning.
+    </h2>
+
+    <p class="section-description">
+      Formal training supporting my work across AI,
+      automation, and digital operations.
+    </p>
+
+
+    <div class="cert-grid">
+
+      <div class="cert">
+        IBM AI Developer Professional
+      </div>
+
+      <div class="cert">
+        IBM RAG & Agentic AI Professional
+      </div>
+
+      <div class="cert">
+        Social Media Marketing Certification
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
+
+<section class="contact" id="contact">
+
+  <div class="container reveal">
+
+    <div class="contact-box">
+
+      <div class="contact-content">
+
+        <div class="section-label">
+          Let's connect
+        </div>
+
+        <h2 class="contact-title">
+          Have something you need help with?
+        </h2>
+
+        <p class="contact-text">
+          Tell me a little about your business, your
+          current challenge, or the kind of support
+          you're looking for.
+        </p>
+
+
+        <!-- TALLY BUTTON -->
+
+        <a
+          href="https://tally.so/r/LZxNbv"
+          target="_blank"
+          rel="noopener"
+          class="contact-button"
+        >
+          Tell Me About Your Project →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-inner">
+
+      <span>
+        © 2026 Francese Vivien Alba
+      </span>
+
+      <a
+        href="mailto:vivienalba1016@gmail.com"
+        class="footer-email"
+      >
+        vivienalba1016@gmail.com
+      </a>
+
+      <span>
+        Manila, Philippines · Remote
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
+<script>
+
+
+/* MOBILE MENU */
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
+
+const navLinks =
+  document.getElementById("navLinks");
+
+
+mobileMenu.addEventListener("click", () => {
+
+  navLinks.classList.toggle("open");
+
+});
+
+
+/* CLOSE MOBILE MENU AFTER CLICK */
+
+document
+  .querySelectorAll(".nav-links a")
+  .forEach(link => {
+
+    link.addEventListener("click", () => {
+
+      navLinks.classList.remove("open");
+
+    });
+
+  });
+
+
+
+/* SCROLL REVEAL */
+
+const revealElements =
+  document.querySelectorAll(".reveal");
+
+
+const observer =
+  new IntersectionObserver(
+
+    (entries) => {
+
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.classList.add("visible");
+
+          observer.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+
+    {
+      threshold: 0.12
+    }
+
+  );
+
+
+revealElements.forEach(element => {
+
+  observer.observe(element);
+
+});
+
+
+/* ACTIVE NAVIGATION */
+
+const sections =
+  document.querySelectorAll("section[id]");
+
+const navItems =
+  document.querySelectorAll(".nav-links a");
+
+
+window.addEventListener("scroll", () => {
+
+  let current = "";
+
+  sections.forEach(section => {
+
+    const sectionTop =
+      section.offsetTop - 150;
+
+    if (window.scrollY >= sectionTop) {
+
+      current = section.getAttribute("id");
+
+    }
+
+  });
+
+
+  navItems.forEach(link => {
+
+    link.classList.remove("active");
+
+    if (
+      link.getAttribute("href") === "#" + current
+    ) {
+
+      link.classList.add("active");
+
+    }
+
+  });
+
+});
+
+
+</script>
+
+
+</body>
+</html>
