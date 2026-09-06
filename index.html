@@ -5,1254 +5,331 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Francese Vivien Alba — Remote Operations & Admin</title>
+<meta name="description" content="Francese Vivien Alba — remote operations, administrative support, AI workflow automation, and client management. Based in Manila, working with teams remotely.">
+<meta name="theme-color" content="#f594ba">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================================================
-   ROOT
-========================================================= */
-
-:root {
-  --pink: #e85d8a;
-  --pink-dark: #c83f6d;
-  --pink-light: #fde8ef;
-  --pink-soft: #fff5f8;
-
-  --ink: #29151e;
-  --muted: #806a73;
-
-  --white: #ffffff;
-  --border: rgba(41, 21, 30, 0.10);
-
-  --shadow: 0 18px 50px rgba(41, 21, 30, 0.08);
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--pink-soft);
-  color: var(--ink);
-  font-family: "DM Sans", sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-::selection {
-  background: var(--pink);
-  color: white;
-}
-
-a {
-  color: inherit;
-}
-
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-.container {
-  width: min(1120px, calc(100% - 48px));
-  margin: auto;
-}
-
-section {
-  padding: 110px 0;
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-
-  color: var(--pink);
-  margin-bottom: 14px;
-}
-
-.section-label::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--pink);
-}
-
-.section-title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(36px, 5vw, 58px);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
-
-.section-description {
-  max-width: 520px;
-  margin-top: 18px;
-
-  color: var(--muted);
-  font-size: 16px;
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.navbar {
-  position: fixed;
-  top: 18px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: min(1080px, calc(100% - 32px));
-
-  z-index: 100;
-
-  background: rgba(255,255,255,.82);
-  backdrop-filter: blur(18px);
-
-  border: 1px solid rgba(41,21,30,.08);
-
-  border-radius: 18px;
-
-  box-shadow: 0 8px 30px rgba(41,21,30,.06);
-}
-
-.nav-inner {
-  height: 64px;
-
-  padding: 0 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  font-family: "Playfair Display", serif;
-  font-size: 19px;
-  font-weight: 600;
-}
-
-.logo span {
-  color: var(--pink);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  list-style: none;
-}
-
-.nav-links a {
-  display: block;
-
-  padding: 9px 13px;
-
-  border-radius: 10px;
-
-  text-decoration: none;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  color: var(--muted);
-
-  transition:
-    background .2s ease,
-    color .2s ease,
-    transform .2s ease;
-}
-
-.nav-links a:hover {
-  background: var(--pink-light);
-  color: var(--pink-dark);
-  transform: translateY(-1px);
-}
-
-.nav-links .nav-contact {
-  background: var(--pink);
-  color: white;
-  margin-left: 5px;
-}
-
-.nav-links .nav-contact:hover {
-  background: var(--pink-dark);
-  color: white;
-}
-
-
-/* MOBILE NAV */
-
-.mobile-menu {
-  display: none;
-
-  background: var(--pink);
-  color: white;
-
-  border: none;
-  border-radius: 9px;
-
-  padding: 8px 12px;
-
-  font-size: 11px;
-  font-weight: 700;
-
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-  min-height: 100vh;
-
-  display: flex;
-  align-items: center;
-
-  position: relative;
-
-  padding-top: 120px;
-
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-
-  position: absolute;
-
-  width: 520px;
-  height: 520px;
-
-  right: -180px;
-  top: 80px;
-
-  background: var(--pink-light);
-
-  border-radius: 50%;
-
-  filter: blur(2px);
-}
-
-.hero::after {
-  content: "";
-
-  position: absolute;
-
-  width: 240px;
-  height: 240px;
-
-  left: -100px;
-  bottom: 60px;
-
-  background: #ffeef3;
-
-  border-radius: 50%;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-
-  display: grid;
-  grid-template-columns: 1.3fr .7fr;
-
-  gap: 70px;
-
-  align-items: center;
-}
-
-.available {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  padding: 8px 13px;
-
-  border-radius: 100px;
-
-  font-size: 11px;
-  font-weight: 700;
-
-  color: var(--muted);
-
-  box-shadow: 0 8px 20px rgba(41,21,30,.04);
-
-  animation: fadeUp .8s ease both;
-}
-
-.available-dot {
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-
-  background: #42c887;
-
-  box-shadow: 0 0 0 4px rgba(66,200,135,.12);
-}
-
-.hero h1 {
-  margin-top: 24px;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: clamp(58px, 8vw, 92px);
-
-  line-height: .96;
-
-  letter-spacing: -.045em;
-
-  animation: fadeUp .9s ease .1s both;
-}
-
-.hero h1 em {
-  color: var(--pink);
-  font-weight: 500;
-}
-
-.hero-description {
-  max-width: 650px;
-
-  margin-top: 25px;
-
-  font-size: 18px;
-
-  color: var(--muted);
-
-  animation: fadeUp .9s ease .2s both;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 12px;
-
-  margin-top: 32px;
-
-  animation: fadeUp .9s ease .3s both;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 14px 21px;
-
-  border-radius: 10px;
-
-  text-decoration: none;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    background .2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-}
-
-.btn-primary {
-  background: var(--pink);
-  color: white;
-
-  box-shadow: 0 10px 25px rgba(232,93,138,.22);
-}
-
-.btn-primary:hover {
-  background: var(--pink-dark);
-
-  box-shadow: 0 14px 30px rgba(232,93,138,.30);
-}
-
-.btn-secondary {
-  background: white;
-  color: var(--ink);
-
-  border: 1px solid var(--border);
-}
-
-.btn-secondary:hover {
-  box-shadow: var(--shadow);
-}
-
-
-/* HERO CARD */
-
-.hero-card {
-  position: relative;
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 24px;
-
-  padding: 30px;
-
-  box-shadow: var(--shadow);
-
-  transform: rotate(2deg);
-
-  transition: transform .35s ease;
-}
-
-.hero-card:hover {
-  transform: rotate(0deg) translateY(-6px);
-}
-
-.card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding-bottom: 20px;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.card-label {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-
-  color: var(--muted);
-}
-
-.card-icon {
-  width: 38px;
-  height: 38px;
-
-  display: grid;
-  place-items: center;
-
-  background: var(--pink-light);
-
-  color: var(--pink);
-
-  border-radius: 50%;
-
-  font-size: 17px;
-}
-
-.card-name {
-  margin-top: 27px;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: 29px;
-}
-
-.card-role {
-  margin-top: 4px;
-
-  color: var(--pink);
-
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.card-list {
-  list-style: none;
-
-  margin-top: 25px;
-}
-
-.card-list li {
-  padding: 11px 0;
-
-  border-top: 1px dashed var(--border);
-
-  font-size: 13px;
-
-  color: var(--muted);
-}
-
-.card-list li::before {
-  content: "✦";
-
-  color: var(--pink);
-
-  margin-right: 8px;
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats {
-  padding: 0 0 100px;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 20px;
-
-  overflow: hidden;
-
-  box-shadow: 0 10px 35px rgba(41,21,30,.05);
-}
-
-.stat {
-  padding: 30px;
-
-  border-right: 1px solid var(--border);
-
-  transition: background .25s ease;
-}
-
-.stat:last-child {
-  border-right: none;
-}
-
-.stat:hover {
-  background: var(--pink-soft);
-}
-
-.stat-number {
-  font-family: "Playfair Display", serif;
-
-  color: var(--pink);
-
-  font-size: 42px;
-
-  line-height: 1;
-}
-
-.stat-label {
-  margin-top: 8px;
-
-  color: var(--muted);
-
-  font-size: 12px;
-  font-weight: 600;
-}
-
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-.about-grid {
-  display: grid;
-
-  grid-template-columns: .65fr 1.35fr;
-
-  gap: 80px;
-
-  align-items: start;
-}
-
-.about-text {
-  font-size: 20px;
-
-  line-height: 1.7;
-
-  color: #49353d;
-}
-
-.about-text strong {
-  color: var(--ink);
-}
-
-
-/* =========================================================
-   EXPERIENCE
-========================================================= */
-
-.experience-list {
-  margin-top: 55px;
-}
-
-.experience {
-  display: grid;
-
-  grid-template-columns: 180px 1fr;
-
-  gap: 45px;
-
-  padding: 35px 0;
-
-  border-top: 1px solid var(--border);
-
-  transition: padding-left .25s ease;
-}
-
-.experience:last-child {
-  border-bottom: 1px solid var(--border);
-}
-
-.experience:hover {
-  padding-left: 12px;
-}
-
-.experience-date {
-  color: var(--pink);
-
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.experience-title {
-  font-family: "Playfair Display", serif;
-
-  font-size: 25px;
-}
-
-.experience-company {
-  margin-top: 4px;
-
-  color: var(--muted);
-
-  font-size: 13px;
-}
-
-.experience ul {
-  margin-top: 18px;
-
-  padding-left: 20px;
-
-  color: #604b53;
-
-  font-size: 14px;
-}
-
-.experience li {
-  margin-bottom: 8px;
-}
-
-.experience li::marker {
-  color: var(--pink);
-}
-
-
-/* =========================================================
-   SKILLS
-========================================================= */
-
-.skills-grid {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 15px;
-
-  margin-top: 50px;
-}
-
-.skill {
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 16px;
-
-  padding: 26px;
-
-  min-height: 190px;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    border-color .25s ease;
-}
-
-.skill:hover {
-  transform: translateY(-6px);
-
-  border-color: rgba(232,93,138,.3);
-
-  box-shadow: var(--shadow);
-}
-
-.skill-number {
-  color: var(--pink);
-
-  font-size: 11px;
-  font-weight: 700;
-
-  letter-spacing: .08em;
-}
-
-.skill h3 {
-  margin-top: 15px;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: 21px;
-}
-
-.skill p {
-  margin-top: 10px;
-
-  color: var(--muted);
-
-  font-size: 13px;
-}
-
-
-/* =========================================================
-   PROJECTS
-========================================================= */
-
-.projects-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 18px;
-
-  margin-top: 50px;
-}
-
-.project {
-  position: relative;
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 18px;
-
-  padding: 30px;
-
-  overflow: hidden;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-}
-
-.project::after {
-  content: "";
-
-  position: absolute;
-
-  width: 100px;
-  height: 100px;
-
-  right: -40px;
-  bottom: -40px;
-
-  border-radius: 50%;
-
-  background: var(--pink-light);
-
-  transition: transform .3s ease;
-}
-
-.project:hover {
-  transform: translateY(-5px);
-
-  box-shadow: var(--shadow);
-}
-
-.project:hover::after {
-  transform: scale(1.5);
-}
-
-.project-number {
-  font-size: 11px;
-
-  color: var(--pink);
-
-  font-weight: 700;
-}
-
-.project h3 {
-  margin-top: 16px;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: 23px;
-}
-
-.project p {
-  margin-top: 10px;
-
-  color: var(--muted);
-
-  font-size: 14px;
-}
-
-.project-tools {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 7px;
-
-  margin-top: 20px;
-}
-
-.project-tools span {
-  padding: 5px 9px;
-
-  border-radius: 100px;
-
-  background: var(--pink-light);
-
-  color: var(--pink-dark);
-
-  font-size: 10px;
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   CERTIFICATIONS
-========================================================= */
-
-.certifications {
-  background: white;
-}
-
-.cert-grid {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 12px;
-
-  margin-top: 45px;
-}
-
-.cert {
-  padding: 15px 19px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 100px;
-
-  background: var(--pink-soft);
-
-  font-size: 12px;
-  font-weight: 600;
-
-  transition:
-    transform .2s ease,
-    background .2s ease;
-}
-
-.cert:hover {
-  transform: translateY(-3px);
-
-  background: var(--pink-light);
-}
-
-.cert::before {
-  content: "✓";
-
-  color: var(--pink);
-
-  margin-right: 8px;
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact {
-  padding: 110px 0 50px;
-}
-
-.contact-box {
-  position: relative;
-
-  background: var(--pink);
-
-  color: white;
-
-  border-radius: 28px;
-
-  padding: 65px;
-
-  overflow: hidden;
-}
-
-.contact-box::before {
-  content: "";
-
-  position: absolute;
-
-  width: 300px;
-  height: 300px;
-
-  right: -90px;
-  top: -120px;
-
-  border-radius: 50%;
-
-  border: 45px solid rgba(255,255,255,.10);
-}
-
-.contact-box::after {
-  content: "";
-
-  position: absolute;
-
-  width: 180px;
-  height: 180px;
-
-  left: -80px;
-  bottom: -100px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.08);
-}
-
-.contact-content {
-  position: relative;
-  z-index: 2;
-
-  max-width: 700px;
-}
-
-.contact-box .section-label {
-  color: white;
-}
-
-.contact-box .section-label::before {
-  background: white;
-}
-
-.contact-title {
-  font-family: "Playfair Display", serif;
-
-  font-size: clamp(38px, 5vw, 58px);
-
-  line-height: 1.05;
-
-  margin-top: 5px;
-}
-
-.contact-text {
-  margin-top: 18px;
-
-  color: rgba(255,255,255,.82);
-
-  font-size: 15px;
-}
-
-.contact-button {
-  display: inline-flex;
-
-  margin-top: 28px;
-
-  padding: 14px 22px;
-
-  background: white;
-
-  color: var(--pink-dark);
-
-  border-radius: 10px;
-
-  text-decoration: none;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-}
-
-.contact-button:hover {
-  transform: translateY(-3px);
-
-  box-shadow: 0 12px 30px rgba(80,20,40,.2);
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-  padding: 30px 0 45px;
-}
-
-.footer-inner {
-  display: flex;
-
-  justify-content: space-between;
-
-  gap: 20px;
-
-  padding-top: 25px;
-
-  border-top: 1px solid var(--border);
-
-  color: var(--muted);
-
-  font-size: 11px;
-}
-
-.footer-email {
-  color: var(--pink-dark);
-
-  text-decoration: none;
-
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-.reveal {
-  opacity: 0;
-
-  transform: translateY(25px);
-
-  transition:
-    opacity .7s ease,
-    transform .7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-
-  transform: translateY(0);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 800px) {
-
-  section {
-    padding: 80px 0;
-  }
-
-  .container {
-    width: min(100% - 32px, 650px);
-  }
-
-  .nav-links {
-    display: none;
-
-    position: absolute;
-
-    top: 70px;
-    left: 0;
-    right: 0;
-
-    padding: 12px;
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 15px;
-
-    flex-direction: column;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .nav-links a {
-    width: 100%;
-  }
-
-  .nav-links .nav-contact {
-    margin-left: 0;
-  }
-
-  .mobile-menu {
-    display: block;
-  }
-
-  .hero {
-    padding-top: 120px;
-  }
-
-  .hero-content {
-    grid-template-columns: 1fr;
-    gap: 50px;
-  }
-
-  .hero-card {
-    max-width: 500px;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stat {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .stat:last-child {
-    border-bottom: none;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .experience {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .contact-box {
-    padding: 45px 30px;
-  }
-}
-
-
-@media (max-width: 520px) {
-
-  .hero h1 {
-    font-size: 55px;
-  }
-
-  .hero-description {
-    font-size: 16px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .skills-grid,
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-  }
-}
-
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes fadeUp {
-
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+/* Option 02 — a graphic studio identity in pink, white, and forest ink. */
+:root { --pink:#f594ba; --pink-light:#ffe5ef; --accent:#a72556; --ink:#182a24; --muted:#54665e; --paper:#fffefd; --rule:#d0d9d3; --sidebar:232px; --sans:"Manrope",Arial,sans-serif; --mono:"IBM Plex Mono",monospace; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:32px; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:1rem; line-height:1.7; }
+h1,h2,h3,p,ul,ol { margin:0; }
+a { color:inherit; text-underline-offset:5px; }
+button { font:inherit; }
+::selection { background:var(--ink); color:var(--pink); }
+:focus-visible { outline:3px solid var(--accent); outline-offset:5px; }
+.skip-link { position:fixed; z-index:200; top:10px; left:12px; background:var(--ink); color:var(--paper); padding:12px 20px; transform:translateY(-200%); }
+.skip-link:focus { transform:translateY(0); }
+main,footer { margin-left:var(--sidebar); }
+.container { width:calc(100% - 112px); max-width:1280px; margin-inline:auto; }
+section { padding:84px 0; }
+.section-label { display:flex; align-items:center; gap:13px; font-family:var(--mono); font-size:.8125rem; letter-spacing:.035em; text-transform:uppercase; margin-bottom:28px; color:var(--muted); }
+.section-label .index { color:var(--accent); }
+.section-title { max-width:850px; font-size:clamp(2.25rem,3.5vw,3.75rem); font-weight:600; line-height:1.15; letter-spacing:-.05em; }
+.section-description { max-width:530px; color:var(--muted); margin-top:22px; font-size:1rem; }
+.navbar { position:fixed; z-index:100; left:0; top:0; bottom:0; width:var(--sidebar); background:var(--paper); border-right:1px solid var(--rule); overflow-y:auto; }
+.nav-inner { min-height:100%; padding:35px 25px 24px; display:flex; flex-direction:column; align-items:stretch; }
+.logo { display:block; width:fit-content; font-size:2.375rem; font-weight:800; line-height:.98; letter-spacing:-.075em; text-decoration:none; }
+.logo span { color:var(--accent); }
+.nav-caption { font-family:var(--mono); font-size:.75rem; color:var(--muted); line-height:1.65; margin-top:20px; }
+.nav-links { list-style:none; padding:0; margin-top:64px; display:flex; flex-direction:column; gap:5px; }
+.nav-links a { display:flex; align-items:baseline; gap:15px; padding:11px 10px; font-size:.875rem; text-decoration:none; border-left:2px solid transparent; transition:background .2s,border-color .2s; }
+.nav-number { font-family:var(--mono); color:var(--muted); font-size:.75rem; }
+.nav-links a:hover,.nav-links a.active { background:var(--pink-light); border-left-color:var(--accent); }
+.nav-links .nav-contact { margin-top:22px; padding:12px 18px; background:var(--ink); color:var(--paper); justify-content:space-between; border:1px solid var(--ink); }
+.nav-links .nav-contact:hover { background:var(--pink); color:var(--ink); }
+.nav-note { padding-top:60px; margin-top:auto; font-family:var(--mono); font-size:.75rem; color:var(--muted); line-height:1.8; }
+.mobile-menu { display:none; }
+.hero { background:var(--pink); padding:38px 0 34px; }
+.hero-overline { display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; font-family:var(--mono); font-size:.75rem; text-transform:uppercase; line-height:1.65; letter-spacing:.01em; }
+.hero-overline>span:first-child { max-width:265px; }
+.available { display:inline-flex; gap:9px; align-items:baseline; max-width:290px; font-size:.8125rem; text-transform:none; }
+.available-dot { width:6px; height:6px; background:var(--ink); flex-shrink:0; align-self:center; }
+.hero-main { margin-top:52px; }
+.hero-main>div { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(185px,.7fr); gap:26px 50px; align-items:start; }
+.hero h1 { grid-column:1/-1; font-weight:800; font-size:clamp(4rem,7.75vw,8rem); line-height:1.04; letter-spacing:-.075em; margin-left:-.045em; padding-bottom:.08em; }
+.hero h1 em { font-weight:400; font-style:normal; }
+.hero-description { max-width:560px; font-size:1.0625rem; line-height:1.8; }
+.hero-buttons { display:flex; flex-direction:column; align-items:stretch; gap:10px; padding-top:4px; }
+.btn { display:inline-flex; gap:15px; align-items:center; justify-content:space-between; min-height:47px; padding:11px 16px; font-size:.875rem; font-weight:600; line-height:1.6; text-decoration:none; transition:background .2s,color .2s; }
+.btn-primary { background:var(--ink); color:var(--paper); border:1px solid var(--ink); }
+.btn-primary:hover { color:var(--ink); background:var(--paper); }
+.btn-secondary { border:1px solid var(--ink); }
+.btn-secondary:hover { background:var(--pink-light); }
+.hero-aside { display:grid; grid-template-columns:125px 1fr; gap:16px 30px; margin-top:42px; border-top:1px solid #ae6481; padding-top:23px; }
+.aside-label { font-family:var(--mono); font-size:.75rem; text-transform:uppercase; padding-top:4px; }
+.card-list { display:flex; flex-wrap:wrap; gap:8px 25px; padding:0; list-style:none; }
+.card-list li { font-size:.875rem; line-height:1.6; }
+.aside-location { display:none; }
+.stats { border-bottom:1px solid var(--rule); }
+.stats-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+.stat { padding:31px 24px; border-left:1px solid var(--rule); }
+.stat:first-child { padding-left:0; border-left:0; }
+.stat:last-child { padding-right:0; }
+.stat-number { font-size:3rem; font-weight:600; line-height:1.15; letter-spacing:-.065em; }
+.stat-label { max-width:240px; font-size:.875rem; color:var(--muted); margin-top:9px; line-height:1.7; }
+#about .about-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:54px; align-items:start; }
+#about .section-title { font-size:clamp(2.125rem,3.2vw,3.5rem); }
+.about-text { color:var(--muted); padding-top:3px; }
+.about-text strong { color:var(--ink); font-weight:600; }
+#experience { background:#f0f4f1; }
+.experience-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:2px solid var(--ink); margin-top:40px; }
+.experience { padding:27px 25px 0; border-left:1px solid var(--rule); }
+.experience:first-child { padding-left:0; border-left:0; }
+.experience:last-child { padding-right:0; }
+.experience-date { font-family:var(--mono); font-size:.75rem; color:var(--muted); line-height:1.7; margin-bottom:27px; }
+.experience-title { font-size:1.3125rem; line-height:1.4; font-weight:700; letter-spacing:-.03em; }
+.experience-company { font-size:.875rem; line-height:1.75; color:var(--accent); margin-top:15px; }
+.experience ul { display:grid; gap:18px; padding:0; margin-top:25px; list-style:none; }
+.experience li { font-size:1rem; line-height:1.75; color:var(--muted); }
+#skills { border-bottom:1px solid var(--rule); }
+.skills-grid { margin-top:43px; border-top:2px solid var(--ink); }
+.skill { display:grid; grid-template-columns:120px minmax(0,1fr) minmax(0,1.5fr); gap:25px; align-items:start; padding:26px 0; border-bottom:1px solid var(--rule); }
+.skill-number { font-family:var(--mono); font-size:.75rem; line-height:1.8; padding-top:4px; color:var(--accent); }
+.skill h3 { font-size:1.375rem; font-weight:600; letter-spacing:-.035em; line-height:1.4; }
+.skill p { color:var(--muted); }
+#projects { background:var(--pink-light); }
+.projects-layout { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin-top:40px; }
+.projects-list { display:contents; }
+.project,.project-feature { display:flex; flex-direction:column; position:relative; padding:29px; min-height:305px; border:1px solid #d09eaf; background:transparent; }
+.project-feature { background:var(--pink); grid-column:auto; }
+.project-number { font-family:var(--mono); font-size:.75rem; letter-spacing:.025em; color:var(--accent); margin-bottom:38px; }
+.project h3,.project-feature h3 { font-size:1.625rem; line-height:1.3; font-weight:600; letter-spacing:-.035em; }
+.project p,.project-feature p { color:var(--muted); margin-top:18px; padding-bottom:23px; }
+.project-tools { display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline; margin-top:auto; font-family:var(--mono); font-size:.75rem; line-height:1.7; color:var(--ink); }
+.project-tools span+span { border-left:1px solid #b88698; padding-left:12px; }
+.certifications { border-bottom:1px solid var(--rule); }
+.cert-grid { margin-top:36px; border-top:2px solid var(--ink); counter-reset:cert; }
+.cert { display:flex; align-items:baseline; gap:28px; padding:23px 0; border-bottom:1px solid var(--rule); font-size:1.125rem; font-weight:500; counter-increment:cert; }
+.cert::before { content:"0" counter(cert); font-family:var(--mono); font-size:.75rem; color:var(--accent); font-weight:400; }
+.contact { background:var(--ink); color:var(--paper); padding:74px 0; }
+.contact .section-label { color:#c1d0c8; }
+.contact .section-label .index { color:var(--pink); }
+.contact-title { max-width:850px; font-size:clamp(2.625rem,5vw,5.25rem); line-height:1.1; font-weight:500; letter-spacing:-.065em; }
+.contact-text { max-width:560px; color:#c1d0c8; margin-top:28px; }
+.contact-button { display:inline-flex; justify-content:space-between; gap:32px; padding:15px 23px; background:var(--pink); color:var(--ink); text-decoration:none; font-size:.9375rem; font-weight:600; margin-top:29px; transition:background .2s; }
+.contact-button:hover { background:var(--paper); }
+footer { background:var(--ink); color:#c1d0c8; }
+.footer-inner { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 25px; padding:24px 0; border-top:1px solid #52675c; font-family:var(--mono); font-size:.75rem; line-height:1.8; }
+.footer-email { overflow-wrap:anywhere; }
+
+@media (min-width:1650px) { :root { --sidebar:265px; } .nav-inner { padding-inline:35px; } .hero h1 { font-size:9rem; } .hero { padding-block:48px; } }
+@media (max-width:1250px) {
+  :root { --sidebar:205px; }
+  .nav-inner { padding-inline:20px; }
+  .container { width:calc(100% - 72px); }
+  .hero h1 { font-size:clamp(3.5rem,7.4vw,6.5rem); }
+  .hero-main>div { column-gap:28px; grid-template-columns:minmax(0,1.2fr) minmax(185px,.8fr); }
+  .hero-aside { grid-template-columns:105px 1fr; gap:20px; }
+  .hero-overline>span:first-child { max-width:225px; }
+  .available { max-width:230px; }
+  .experience { padding-inline:19px; }
+  .experience-title { font-size:1.1875rem; }
+  .skill { grid-template-columns:95px minmax(0,1fr) minmax(0,1.3fr); gap:20px; }
+  .skill h3 { font-size:1.25rem; }
+  .skill-number { font-size:.75rem; overflow-wrap:anywhere; }
+  .project,.project-feature { padding:25px; }
+}
+@media (max-width:1050px) and (min-width:901px) {
+  .hero-main>div { grid-template-columns:1fr; }
+  .hero-buttons { flex-direction:row; flex-wrap:wrap; gap:15px; }
+  .experience-list { grid-template-columns:1fr; }
+  .experience { display:grid; grid-template-columns:145px minmax(0,1fr); gap:25px; padding:25px 0; border-left:0; border-bottom:1px solid var(--rule); }
+  .experience-date { margin:0; }
+  .experience-title { font-size:1.375rem; }
+  .experience ul { gap:12px; }
+  #about .about-grid { grid-template-columns:1fr; gap:30px; }
+}
+@media (max-width:900px) {
+  :root { --sidebar:0px; }
+  html { scroll-padding-top:105px; }
+  .navbar { position:sticky; top:0; width:100%; height:auto; overflow:visible; border-right:0; border-bottom:1px solid var(--rule); }
+  .nav-inner { min-height:78px; padding:14px 32px; display:flex; flex-direction:row; align-items:center; justify-content:space-between; }
+  .logo { font-size:1.875rem; line-height:1; }
+  .logo br { display:none; }
+  .nav-caption,.nav-note { display:none; }
+  .mobile-menu { display:block; background:transparent; border:1px solid var(--ink); padding:8px 14px; min-height:44px; font-family:var(--mono); font-size:.8125rem; color:var(--ink); cursor:pointer; }
+  .nav-links { display:none; position:absolute; top:100%; left:0; right:0; margin:0; padding:15px 32px 25px; background:var(--paper); border-bottom:1px solid var(--rule); box-shadow:0 15px 25px #182a2410; }
+  .nav-links.open { display:flex; }
+  .nav-links a { font-size:1rem; padding:12px; }
+  .nav-links .nav-contact { margin-top:12px; }
+  .container { width:calc(100% - 64px); }
+  .hero h1 { font-size:clamp(4rem,10vw,6rem); }
+  .hero-main { margin-top:38px; }
+  .hero-main>div { grid-template-columns:minmax(0,1.3fr) minmax(185px,.7fr); }
+  .hero-aside { margin-top:32px; }
+  #about .about-grid { gap:35px; }
+  section { padding:65px 0; }
+  .experience { padding-inline:17px; }
+  .experience-title { font-size:1.25rem; }
+  .skill { grid-template-columns:115px minmax(0,1fr) minmax(0,1.35fr); }
+  .contact-title { font-size:3.75rem; }
+}
+@media (max-width:680px) {
+  .container { width:calc(100% - 40px); }
+  .nav-inner { padding-inline:20px; min-height:74px; }
+  .nav-links { padding-inline:20px; }
+  .hero { padding-top:25px; padding-bottom:27px; }
+  .hero-overline { display:grid; gap:12px; font-size:.75rem; }
+  .hero-overline>span:first-child,.available { max-width:100%; }
+  .hero-main { margin-top:30px; }
+  .hero-main>div { display:block; }
+  .hero h1 { font-size:clamp(3.05rem,12.8vw,5.5rem); }
+  .hero-description { margin-top:25px; }
+  .hero-buttons { flex-direction:row; flex-wrap:wrap; gap:12px; margin-top:25px; }
+  .btn { font-size:.875rem; }
+  .hero-aside { display:block; margin-top:28px; padding-top:20px; }
+  .aside-label { padding-top:0; margin-bottom:14px; }
+  .card-list { gap:8px 16px; }
+  .card-list li { font-size:.875rem; }
+  .stats-grid { grid-template-columns:1fr; }
+  .stat { display:grid; grid-template-columns:90px minmax(0,1fr); gap:15px; align-items:center; border-left:0; border-top:1px solid var(--rule); padding:21px 0; }
+  .stat:first-child { border-top:0; }
+  .stat-number { font-size:2.625rem; }
+  .stat-label { margin-top:0; max-width:100%; }
+  section { padding:52px 0; }
+  .section-label { margin-bottom:22px; }
+  .section-title { font-size:2.375rem; }
+  #about .about-grid { display:block; }
+  #about .section-title { font-size:2.375rem; }
+  .about-text { margin-top:28px; padding:0; }
+  .experience-list { grid-template-columns:1fr; margin-top:30px; }
+  .experience { padding:26px 0; border-left:0; border-bottom:1px solid var(--rule); }
+  .experience-date { margin-bottom:17px; }
+  .experience-title { font-size:1.375rem; }
+  .experience-company { margin-top:10px; }
+  .experience ul { gap:13px; margin-top:20px; }
+  .skills-grid { margin-top:30px; }
+  .skill { grid-template-columns:1fr; gap:12px; padding:24px 0; }
+  .skill-number { padding:0; }
+  .skill h3 { font-size:1.375rem; }
+  .projects-layout { grid-template-columns:1fr; gap:17px; margin-top:30px; }
+  .project,.project-feature { padding:24px; min-height:0; }
+  .project-number { margin-bottom:27px; }
+  .project h3,.project-feature h3 { font-size:1.5rem; }
+  .cert-grid { margin-top:27px; }
+  .cert { gap:20px; font-size:1.0625rem; padding:21px 0; }
+  .contact { padding:53px 0; }
+  .contact-title { font-size:3rem; }
+  .contact-button { gap:18px; font-size:.875rem; padding:14px 18px; }
+  .footer-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none!important; transition:none!important; } }
+@media print {
+  .navbar,.hero-buttons,.contact,.skip-link { display:none; }
+  main,footer { margin-left:0; }
+  body,.hero,#experience,#projects,footer { background:white; color:#222; }
+  .container { width:100%; }
+  section { padding:25px 0; }
+  .experience,.skill,.project,.project-feature,.cert { break-inside:avoid; }
+  .project,.project-feature { background:white; }
+}
+
+
+/* Motion edition. The original type, color, content, and layout are retained. */
+:root { --motion-ease:cubic-bezier(.22,.72,.22,1); }
+.hero-line { display:inline-block; }
+@media (min-width:901px) {
+  .nav-links { position:relative; isolation:isolate; }
+  .nav-links::before { content:""; position:absolute; z-index:0; top:0; left:0; width:100%; height:var(--active-height,44px); background:var(--pink-light); border-left:2px solid var(--accent); pointer-events:none; opacity:0; transform:translateY(var(--active-y,0px)); transition:transform .35s var(--motion-ease),height .35s var(--motion-ease),opacity .2s; }
+  .nav-links.has-active::before { opacity:1; }
+  .nav-links a { position:relative; z-index:1; }
+  .nav-links.has-active a.active { background:transparent; border-left-color:transparent; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .hero-line { animation:studio-name .9s var(--motion-ease) both; }
+  .hero-line:nth-of-type(2) { animation-delay:.1s; }
+  .hero h1 em.hero-line { animation-delay:.12s; }
+  .hero-overline { animation:studio-arrive .7s .04s var(--motion-ease) both; }
+  .hero-description { animation:studio-arrive .8s .19s var(--motion-ease) both; }
+  .hero-buttons { animation:studio-arrive .8s .26s var(--motion-ease) both; }
+  .hero-aside .aside-label { animation:studio-arrive .7s .32s var(--motion-ease) both; }
+  .hero-aside .card-list li { animation:studio-arrive .65s var(--motion-ease) both; animation-delay:calc(.32s + var(--focus-order,0)*.045s); }
+  .card-list li:nth-child(1) { --focus-order:0; }
+  .card-list li:nth-child(2) { --focus-order:1; }
+  .card-list li:nth-child(3) { --focus-order:2; }
+  .card-list li:nth-child(4) { --focus-order:3; }
+  .card-list li:nth-child(5) { --focus-order:4; }
+  .logo { animation:studio-arrive .75s .06s var(--motion-ease) both; }
+  .nav-caption { animation:studio-arrive .75s .12s var(--motion-ease) both; }
+  .btn,.contact-button,.nav-contact { transition:background .25s,color .25s,transform .3s var(--motion-ease),box-shadow .3s var(--motion-ease); }
+  .btn>span[aria-hidden] { display:inline-block; transition:transform .3s var(--motion-ease); }
+  .project,.project-feature { transition:transform .4s var(--motion-ease),box-shadow .4s var(--motion-ease),border-color .3s; }
+  .skill h3,.skill-number,.cert::before { transition:transform .35s var(--motion-ease),color .3s; }
+  .nav-number { display:inline-block; transition:transform .3s var(--motion-ease),color .3s; }
+  .mobile-menu { transition:background .25s,color .25s; }
+  .mobile-menu[aria-expanded="true"] { background:var(--ink); color:var(--paper); }
+  @keyframes studio-name { from { opacity:0; transform:translateY(25px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes studio-arrive { from { opacity:0; transform:translateY(13px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes studio-menu { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .btn:hover,.contact-button:hover { transform:translateY(-3px); box-shadow:0 7px 15px -10px #182a2466; }
+  .btn:hover>span[aria-hidden] { transform:translate(2px,-2px); }
+  .btn:active,.contact-button:active { transform:translateY(-1px); }
+  .project:hover,.project-feature:hover { transform:translateY(-5px); box-shadow:0 15px 24px -17px #182a2455; border-color:#a7255680; }
+  .skill:hover h3 { transform:translateX(4px); }
+  .skill:hover .skill-number { transform:translateX(2px); }
+  .cert:hover::before { transform:translateX(4px); }
+  .nav-links a:hover .nav-number { transform:translateX(2px); color:var(--accent); }
+}
+@media (max-width:900px) and (prefers-reduced-motion:no-preference) {
+  .nav-links.open { animation:studio-menu .24s var(--motion-ease) both; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { animation:none!important; transition:none!important; }
+}
+@media print {
+  *,*::before,*::after { animation:none!important; transition:none!important; }
 }
 
 </style>
 </head>
 
-
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-
-<!-- =======================================================
-     NAVIGATION
-======================================================= -->
-
-<nav class="navbar">
+<nav class="navbar" aria-label="Main navigation">
 
   <div class="nav-inner">
 
-    <div class="logo">
-      F.V. <span>ALBA</span>
-    </div>
+    <a class="logo" href="#main" aria-label="Francese Vivien Alba, home">vivien<br> <span>alba.</span></a>
+<p class="nav-caption">Remote operations<br>&amp; administrative support</p>
 
-    <button class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu" id="mobileMenu" aria-controls="navLinks" aria-expanded="false" type="button">
       MENU
     </button>
 
     <ul class="nav-links" id="navLinks">
 
       <li>
-        <a href="#about">About</a>
+        <a href="#about"><span class="nav-number" aria-hidden="true">01</span>About</a>
       </li>
 
       <li>
-        <a href="#experience">Experience</a>
+        <a href="#experience"><span class="nav-number" aria-hidden="true">02</span>Experience</a>
       </li>
 
       <li>
-        <a href="#skills">Skills</a>
+        <a href="#skills"><span class="nav-number" aria-hidden="true">03</span>Skills</a>
       </li>
 
       <li>
-        <a href="#projects">Projects</a>
+        <a href="#projects"><span class="nav-number" aria-hidden="true">04</span>Projects</a>
       </li>
 
       <li>
-        <a href="#certifications">Certifications</a>
+        <a href="#certifications"><span class="nav-number" aria-hidden="true">05</span>Certifications</a>
       </li>
 
-      <!-- TALLY CONTACT -->
       <li>
         <a
           href="https://tally.so/r/LZxNbv"
@@ -1265,122 +342,40 @@ footer {
       </li>
 
     </ul>
-
+<p class="nav-note">Manila, Philippines<br>Remote · Flexible time zones</p>
   </div>
-
 </nav>
 
-
-
-<!-- =======================================================
-     HERO
-======================================================= -->
-
+<main id="main">
 <header class="hero">
-
-  <div class="container hero-content">
-
-    <div>
-
-      <div class="available">
-        <span class="available-dot"></span>
-        Available for remote work · Full-time
-      </div>
-
-      <h1>
-        Francese<br>
-        <em>Vivien Alba.</em>
-      </h1>
-
-      <p class="hero-description">
-        Remote Operations & Administrative Professional helping
-        teams turn scattered tasks, systems, and information into
-        organized workflows that actually run.
-      </p>
-
-      <div class="hero-buttons">
-
-        <!-- TALLY -->
-        <a
-          href="https://tally.so/r/LZxNbv"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-primary"
-        >
-          Let's Work Together →
-        </a>
-
-        <a
-          href="#experience"
-          class="btn btn-secondary"
-        >
-          View My Experience
-        </a>
-
-      </div>
-
+  <div class="container">
+    <div class="hero-overline">
+      <span>Remote operations &amp; administrative support</span>
+      <span class="available"><span class="available-dot" aria-hidden="true"></span>Available for remote work · Full-time</span>
     </div>
-
-
-    <!-- INTERACTIVE PROFILE CARD -->
-
-    <div class="hero-card">
-
-      <div class="card-top">
-
-        <span class="card-label">
-          Profile / 01
-        </span>
-
-        <div class="card-icon">
-          ✦
+    <div class="hero-main">
+      <div>
+        <h1><span class="hero-line">Francese</span><br><em class="hero-line">Vivien Alba.</em></h1>
+        <p class="hero-description">Helping teams turn scattered tasks, systems, and information into organized workflows that actually run.</p>
+        <div class="hero-buttons">
+          <a href="https://tally.so/r/LZxNbv" target="_blank" rel="noopener" class="btn btn-primary">Let's Work Together <span aria-hidden="true">↗</span></a>
+          <a href="#experience" class="btn btn-secondary">View My Experience</a>
         </div>
-
       </div>
-
-      <div class="card-name">
-        Francese Vivien Alba
-      </div>
-
-      <div class="card-role">
-        Remote Operations & Admin
-      </div>
-
-      <ul class="card-list">
-
-        <li>
-          Operations & Administrative Support
-        </li>
-
-        <li>
-          AI & Workflow Automation
-        </li>
-
-        <li>
-          CRM & Client Management
-        </li>
-
-        <li>
-          Social Media & Community Operations
-        </li>
-
-        <li>
-          Remote / Flexible Time Zone Coverage
-        </li>
-
-      </ul>
-
+      <aside class="hero-aside" aria-label="Professional focus">
+        <div class="aside-label">Areas of focus</div>
+        <ol class="card-list">
+          <li>Operations &amp; Administrative Support</li>
+          <li>AI &amp; Workflow Automation</li>
+          <li>CRM &amp; Client Management</li>
+          <li>Social Media &amp; Community Operations</li>
+          <li>Remote / Flexible Time Zone Coverage</li>
+        </ol>
+        <p class="aside-location">Based in Manila, Philippines</p>
+      </aside>
     </div>
-
   </div>
-
 </header>
-
-
-
-<!-- =======================================================
-     STATS
-======================================================= -->
 
 <div class="stats">
 
@@ -1400,7 +395,6 @@ footer {
 
       </div>
 
-
       <div class="stat">
 
         <div class="stat-number">
@@ -1412,7 +406,6 @@ footer {
         </div>
 
       </div>
-
 
       <div class="stat">
 
@@ -1432,12 +425,6 @@ footer {
 
 </div>
 
-
-
-<!-- =======================================================
-     ABOUT
-======================================================= -->
-
 <section id="about">
 
   <div class="container reveal">
@@ -1446,16 +433,13 @@ footer {
 
       <div>
 
-        <div class="section-label">
-          About me
-        </div>
+        <div class="section-label"><span class="index" aria-hidden="true">01</span> About me</div>
 
         <h2 class="section-title">
           I make the messy stuff feel simple.
         </h2>
 
       </div>
-
 
       <div>
 
@@ -1488,19 +472,11 @@ footer {
 
 </section>
 
-
-
-<!-- =======================================================
-     EXPERIENCE
-======================================================= -->
-
 <section id="experience">
 
   <div class="container reveal">
 
-    <div class="section-label">
-      Experience
-    </div>
+    <div class="section-label"><span class="index" aria-hidden="true">02</span> Experience</div>
 
     <h2 class="section-title">
       Where I've done the work.
@@ -1511,11 +487,7 @@ footer {
       more organized, efficient, and dependable.
     </p>
 
-
     <div class="experience-list">
-
-
-      <!-- ROLE 1 -->
 
       <div class="experience">
 
@@ -1562,10 +534,6 @@ footer {
 
       </div>
 
-
-
-      <!-- ROLE 2 -->
-
       <div class="experience">
 
         <div class="experience-date">
@@ -1610,10 +578,6 @@ footer {
 
       </div>
 
-
-
-      <!-- ROLE 3 -->
-
       <div class="experience">
 
         <div class="experience-date">
@@ -1653,26 +617,17 @@ footer {
 
       </div>
 
-
     </div>
 
   </div>
 
 </section>
 
-
-
-<!-- =======================================================
-     SKILLS
-======================================================= -->
-
 <section id="skills">
 
   <div class="container reveal">
 
-    <div class="section-label">
-      Skills & Tools
-    </div>
+    <div class="section-label"><span class="index" aria-hidden="true">03</span> Skills & Tools</div>
 
     <h2 class="section-title">
       What I can bring to your team.
@@ -1683,9 +638,7 @@ footer {
       and creative skills.
     </p>
 
-
     <div class="skills-grid">
-
 
       <div class="skill">
 
@@ -1705,7 +658,6 @@ footer {
 
       </div>
 
-
       <div class="skill">
 
         <div class="skill-number">
@@ -1722,7 +674,6 @@ footer {
         </p>
 
       </div>
-
 
       <div class="skill">
 
@@ -1742,7 +693,6 @@ footer {
 
       </div>
 
-
       <div class="skill">
 
         <div class="skill-number">
@@ -1761,7 +711,6 @@ footer {
 
       </div>
 
-
       <div class="skill">
 
         <div class="skill-number">
@@ -1778,7 +727,6 @@ footer {
         </p>
 
       </div>
-
 
       <div class="skill">
 
@@ -1798,203 +746,63 @@ footer {
 
       </div>
 
-
     </div>
 
   </div>
 
 </section>
-
-
-
-<!-- =======================================================
-     PROJECTS
-======================================================= -->
 
 <section id="projects">
-
-  <div class="container reveal">
-
-    <div class="section-label">
-      Selected work
-    </div>
-
-    <h2 class="section-title">
-      Things I've built.
-    </h2>
-
-    <p class="section-description">
-      A few examples of systems and workflows I've
-      worked on across operations and client support.
-    </p>
-
-
-    <div class="projects-grid">
-
-
-      <div class="project">
-
-        <div class="project-number">
-          PROJECT / 01
-        </div>
-
-        <h3>
-          Client Onboarding Automation
-        </h3>
-
-        <p>
-          Streamlined new client intake for coaching
-          programs, reducing manual setup steps and
-          getting members active faster.
-        </p>
-
-        <div class="project-tools">
-          <span>Notion</span>
-          <span>Trainerize</span>
-        </div>
-
-      </div>
-
-
-      <div class="project">
-
-        <div class="project-number">
-          PROJECT / 02
-        </div>
-
-        <h3>
-          Instagram Content System
-        </h3>
-
-        <p>
-          Built a repeatable content pipeline for
-          captions, carousels, and stories while
-          keeping posting consistent across accounts.
-        </p>
-
-        <div class="project-tools">
-          <span>Canva</span>
-          <span>Claude AI</span>
-        </div>
-
-      </div>
-
-
-      <div class="project">
-
-        <div class="project-number">
-          PROJECT / 03
-        </div>
-
-        <h3>
-          Client Progress Tracker
-        </h3>
-
-        <p>
-          Designed a Google Sheets and Notion tracker
-          giving coaches a clearer view of client
-          adherence and progress.
-        </p>
-
-        <div class="project-tools">
-          <span>Google Sheets</span>
-          <span>Notion</span>
-        </div>
-
-      </div>
-
-
-      <div class="project">
-
-        <div class="project-number">
-          PROJECT / 04
-        </div>
-
-        <h3>
-          Paperless Operations Overhaul
-        </h3>
-
-        <p>
-          Moved booking and records processes into
-          a digital workflow, reducing labor costs
-          by 30% and office overhead by 10%.
-        </p>
-
-        <div class="project-tools">
-          <span>Digital Records</span>
-          <span>Operations</span>
-        </div>
-
-      </div>
-
-
-      <div class="project">
-
-        <div class="project-number">
-          PROJECT / 05
-        </div>
-
-        <h3>
-          Email Workflow Automation
-        </h3>
-
-        <p>
-          Created templated, AI-assisted responses
-          for recurring client questions while
-          maintaining a personal tone.
-        </p>
-
-        <div class="project-tools">
-          <span>Claude AI</span>
-          <span>Automation</span>
-        </div>
-
-      </div>
-
-
-      <div class="project">
-
-        <div class="project-number">
-          PROJECT / 06
-        </div>
-
-        <h3>
-          Marketing Visuals
-        </h3>
-
-        <p>
-          Produced photo and video assets for
-          social promotions, from editing through
-          final campaign-ready export.
-        </p>
-
-        <div class="project-tools">
-          <span>Canva</span>
-          <span>Adobe</span>
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
+  <div class="container">
+    <div class="section-label"><span class="index" aria-hidden="true">04</span> Selected work</div>
+    <h2 class="section-title">Things I've built.</h2>
+    <p class="section-description">A few examples of systems and workflows I've worked on across operations and client support.</p>
+    <div class="projects-layout">
+<article class="project">
+          <div class="project-number">PROJECT / 01</div>
+          <h3>Client Onboarding Automation</h3>
+          <p>Streamlined new client intake for coaching programs, reducing manual setup steps and getting members active faster.</p>
+          <div class="project-tools"><span>Notion</span><span>Trainerize</span></div>
+        </article>
+<article class="project">
+          <div class="project-number">PROJECT / 02</div>
+          <h3>Instagram Content System</h3>
+          <p>Built a repeatable content pipeline for captions, carousels, and stories while keeping posting consistent across accounts.</p>
+          <div class="project-tools"><span>Canva</span><span>Claude AI</span></div>
+        </article>
+<article class="project">
+          <div class="project-number">PROJECT / 03</div>
+          <h3>Client Progress Tracker</h3>
+          <p>Designed a Google Sheets and Notion tracker giving coaches a clearer view of client adherence and progress.</p>
+          <div class="project-tools"><span>Google Sheets</span><span>Notion</span></div>
+        </article>
+<article class="project-feature">
+        <div class="project-number">PROJECT / 04</div>
+        <h3>Paperless Operations Overhaul</h3>
+        <p>Moved booking and records processes into a digital workflow, reducing labor costs by 30% and office overhead by 10%.</p>
+        <div class="project-tools"><span>Digital Records</span><span>Operations</span></div>
+      </article>
+<article class="project">
+          <div class="project-number">PROJECT / 05</div>
+          <h3>Email Workflow Automation</h3>
+          <p>Created templated, AI-assisted responses for recurring client questions while maintaining a personal tone.</p>
+          <div class="project-tools"><span>Claude AI</span><span>Automation</span></div>
+        </article>
+<article class="project">
+          <div class="project-number">PROJECT / 06</div>
+          <h3>Marketing Visuals</h3>
+          <p>Produced photo and video assets for social promotions, from editing through final campaign-ready export.</p>
+          <div class="project-tools"><span>Canva</span><span>Adobe</span></div>
+        </article>
+</div>
+</div>
 </section>
-
-
-
-<!-- =======================================================
-     CERTIFICATIONS
-======================================================= -->
 
 <section id="certifications" class="certifications">
 
   <div class="container reveal">
 
-    <div class="section-label">
-      Certifications
-    </div>
+    <div class="section-label"><span class="index" aria-hidden="true">05</span> Certifications</div>
 
     <h2 class="section-title">
       Always learning.
@@ -2004,7 +812,6 @@ footer {
       Formal training supporting my work across AI,
       automation, and digital operations.
     </p>
-
 
     <div class="cert-grid">
 
@@ -2026,12 +833,6 @@ footer {
 
 </section>
 
-
-
-<!-- =======================================================
-     CONTACT
-======================================================= -->
-
 <section class="contact" id="contact">
 
   <div class="container reveal">
@@ -2040,9 +841,7 @@ footer {
 
       <div class="contact-content">
 
-        <div class="section-label">
-          Let's connect
-        </div>
+        <div class="section-label"><span class="index" aria-hidden="true">06</span> Let's connect</div>
 
         <h2 class="contact-title">
           Have something you need help with?
@@ -2053,9 +852,6 @@ footer {
           current challenge, or the kind of support
           you're looking for.
         </p>
-
-
-        <!-- TALLY BUTTON -->
 
         <a
           href="https://tally.so/r/LZxNbv"
@@ -2074,12 +870,7 @@ footer {
 
 </section>
 
-
-
-<!-- =======================================================
-     FOOTER
-======================================================= -->
-
+</main>
 <footer>
 
   <div class="container">
@@ -2107,132 +898,124 @@ footer {
 
 </footer>
 
-
-
-<!-- =======================================================
-     JAVASCRIPT
-======================================================= -->
-
 <script>
 
+(() => {
+  const menuButton = document.getElementById('mobileMenu');
+  const navigation = document.getElementById('navLinks');
+  const desktop = window.matchMedia('(min-width: 901px)');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-/* MOBILE MENU */
-
-const mobileMenu =
-  document.getElementById("mobileMenu");
-
-const navLinks =
-  document.getElementById("navLinks");
-
-
-mobileMenu.addEventListener("click", () => {
-
-  navLinks.classList.toggle("open");
-
-});
-
-
-/* CLOSE MOBILE MENU AFTER CLICK */
-
-document
-  .querySelectorAll(".nav-links a")
-  .forEach(link => {
-
-    link.addEventListener("click", () => {
-
-      navLinks.classList.remove("open");
-
-    });
-
+  function closeMenu(returnFocus = false) {
+    navigation.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.textContent = 'MENU';
+    if (returnFocus) menuButton.focus();
+  }
+  menuButton.addEventListener('click', () => {
+    const open = navigation.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.textContent = open ? 'CLOSE' : 'MENU';
+  });
+  navigation.addEventListener('click', event => {
+    if (event.target.closest('a')) closeMenu();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navigation.classList.contains('open')) closeMenu(true);
+  });
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.navbar')) closeMenu();
+  });
+  if (desktop.addEventListener) desktop.addEventListener('change', () => {
+    closeMenu();
+    updateNavigation();
   });
 
-
-
-/* SCROLL REVEAL */
-
-const revealElements =
-  document.querySelectorAll(".reveal");
-
-
-const observer =
-  new IntersectionObserver(
-
-    (entries) => {
-
-      entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-          entry.target.classList.add("visible");
-
-          observer.unobserve(entry.target);
-
-        }
-
-      });
-
-    },
-
-    {
-      threshold: 0.12
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  const sectionLinks = Array.from(navigation.querySelectorAll('a[href^="#"]'));
+  let scrollPending = false;
+  function updateNavigation() {
+    let current = '';
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= 165) current = section.id;
     }
-
-  );
-
-
-revealElements.forEach(element => {
-
-  observer.observe(element);
-
-});
-
-
-/* ACTIVE NAVIGATION */
-
-const sections =
-  document.querySelectorAll("section[id]");
-
-const navItems =
-  document.querySelectorAll(".nav-links a");
-
-
-window.addEventListener("scroll", () => {
-
-  let current = "";
-
-  sections.forEach(section => {
-
-    const sectionTop =
-      section.offsetTop - 150;
-
-    if (window.scrollY >= sectionTop) {
-
-      current = section.getAttribute("id");
-
+    let activeLink = null;
+    for (const link of sectionLinks) {
+      const active = link.getAttribute('href') === '#' + current;
+      link.classList.toggle('active', active);
+      if (active) {
+        link.setAttribute('aria-current', 'location');
+        activeLink = link;
+      } else link.removeAttribute('aria-current');
     }
+    if (activeLink && desktop.matches) {
+      navigation.style.setProperty('--active-y', activeLink.offsetTop + 'px');
+      navigation.style.setProperty('--active-height', activeLink.offsetHeight + 'px');
+      navigation.classList.add('has-active');
+    } else navigation.classList.remove('has-active');
+    scrollPending = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!scrollPending) {
+      scrollPending = true;
+      requestAnimationFrame(updateNavigation);
+    }
+  }, {passive:true});
+  window.addEventListener('resize', updateNavigation);
+  if ('ResizeObserver' in window) new ResizeObserver(updateNavigation).observe(navigation);
+  if (document.fonts) document.fonts.ready.then(updateNavigation);
+  updateNavigation();
 
+  // Never hide content with CSS: unsupported JS or motion settings leave it readable.
+  const targets = Array.from(document.querySelectorAll('.stat, section .section-label, section .section-title, section .section-description, .about-text, .experience, .skill, .project, .project-feature, .cert, .contact-title, .contact-text, .contact-button'));
+  const seen = new WeakSet();
+  const playing = new Set();
+  let observer = null;
+  function animateIntoView(element, delay) {
+    if (motion.matches || typeof element.animate !== 'function') return;
+    const distance = element.classList.contains('stat') ? 12 : 18;
+    const animation = element.animate([
+      {opacity:.12,transform:'translateY(' + distance + 'px)'},
+      {opacity:1,transform:'translateY(0)'}
+    ], {duration:650,delay,easing:'cubic-bezier(.22,.72,.22,1)',fill:'backwards'});
+    playing.add(animation);
+    animation.onfinish = () => playing.delete(animation);
+    animation.oncancel = () => playing.delete(animation);
+  }
+  function startReveals() {
+    if (observer) observer.disconnect();
+    if (motion.matches || !('IntersectionObserver' in window)) return;
+    observer = new IntersectionObserver(entries => {
+      // Only siblings entering together are staggered; long rows stay easy to read.
+      const groups = new Map();
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        if (seen.has(entry.target)) continue;
+        seen.add(entry.target);
+        const parent = entry.target.parentElement;
+        const order = groups.get(parent) || 0;
+        groups.set(parent, order + 1);
+        animateIntoView(entry.target, Math.min(order * 65, 195));
+      }
+    }, {threshold:.07});
+    for (const target of targets) if (!seen.has(target)) observer.observe(target);
+  }
+  startReveals();
+  function stopMotion() {
+    if (observer) observer.disconnect();
+    for (const animation of Array.from(playing)) animation.cancel();
+    playing.clear();
+  }
+  if (motion.addEventListener) motion.addEventListener('change', () => {
+    if (motion.matches) stopMotion();
+    else startReveals();
   });
-
-
-  navItems.forEach(link => {
-
-    link.classList.remove("active");
-
-    if (
-      link.getAttribute("href") === "#" + current
-    ) {
-
-      link.classList.add("active");
-
-    }
-
-  });
-
-});
-
+  window.addEventListener('beforeprint', stopMotion);
+  window.addEventListener('afterprint', startReveals);
+})();
 
 </script>
-
 
 </body>
 </html>
