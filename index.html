@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Francese Vivien Alba | Remote Operations &amp; AI Workflows</title>
+<meta name="description" content="Francese Vivien Alba: remote operations, administrative support, client management and AI workflow automation. Based in Manila, Philippines.">
+<meta name="theme-color" content="#ffdce9"><meta name="referrer" content="no-referrer">
+<style>
+:root { --ink:#3c1425; --muted:#674653; --accent:#9e1d51; --rose:#f6b6ce; --pink:#ffdce9; --paper:#fff6fa; --white:#fffdfd; --line:#caa6b5; --ease:cubic-bezier(.2,.75,.2,1); --serif:Georgia,"Times New Roman",serif; --sans:Arial,Helvetica,sans-serif; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:110px; }
+body { margin:0; background:var(--paper); color:var(--ink); font:1rem/1.75 var(--sans); }
+[hidden] { display:none!important; }
+h1,h2,h3,p { margin:0; }
+h1,h2,h3 { text-wrap:balance; }
+a { color:inherit; text-underline-offset:5px; }
+button,input,textarea { font:inherit; }
+button,summary { -webkit-tap-highlight-color:transparent; }
+button,a,summary { touch-action:manipulation; }
+button { cursor:pointer; }
+::selection { background:var(--ink); color:var(--pink); }
+:focus-visible { outline:3px solid var(--accent); outline-offset:5px; }
+section:focus { outline:none; }
+.wrap { width:min(1280px,calc(100% - 96px)); margin-inline:auto; }
+.small-label,.eyebrow { font-size:.8125rem; letter-spacing:.09em; text-transform:uppercase; font-weight:600; }
+.muted { color:var(--muted); }
+.skip-link { position:fixed; top:12px; left:16px; z-index:100; background:var(--ink); color:var(--paper); padding:12px 20px; transform:translateY(-180%); }
+.skip-link:focus { transform:none; }
+.topbar { position:sticky; top:0; z-index:20; background:var(--paper); }
+.topbar-inner { min-height:88px; display:flex; align-items:center; gap:35px; }
+.brand-logo { position:relative; display:block; width:88px; height:68px; flex:0 0 88px; margin-right:auto; overflow:hidden; }
+.brand-logo img { position:absolute; width:128px; height:128px; max-width:none; left:50%; top:50%; transform:translate(-50%,-51%); pointer-events:none; }
+.nav-links { display:flex; list-style:none; align-items:center; gap:29px; padding:0; margin:0; }
+.nav-links a { display:block; font-size:.875rem; text-decoration:none; padding:10px 0; position:relative; }
+.nav-links a::after { content:""; position:absolute; left:0; right:0; bottom:5px; height:1px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
+.nav-links a:hover::after,.nav-links a[aria-current]::after { transform:scaleX(1); }
+.menu-toggle { display:none; min-height:44px; border:1px solid var(--ink); border-radius:999px; background:transparent; padding:8px 16px; color:var(--ink); font-size:.875rem; }
+.hero { overflow:clip; background:var(--pink); position:relative; padding:39px 0 0; }
+.hero-meta { display:flex; gap:20px; align-items:center; justify-content:space-between; padding-bottom:24px; }
+.hero-meta span { font-size:.8125rem; color:var(--muted); }
+.hero-grid { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr); gap:55px; padding:70px 0 66px; align-items:center; }
+.hero h1 { font-family:var(--serif); font-size:clamp(4rem,7.8vw,8.5rem); font-weight:400; letter-spacing:-.065em; line-height:1.05; }
+.hero h1 .line { display:block; }
+.hero h1 em { font-weight:400; color:var(--accent); }
+.hero-intro { display:flex; flex-direction:column; align-items:flex-start; padding-top:18px; }
+.hero-intro .name { font-size:1rem; font-weight:700; margin-bottom:16px; }
+.hero-intro p { max-width:350px; color:var(--muted); }
+.hero-actions { margin-top:31px; display:flex; align-items:center; flex-wrap:wrap; gap:14px 25px; }
+.pill { display:inline-flex; align-items:center; justify-content:center; gap:26px; border-radius:999px; border:1px solid var(--ink); padding:14px 23px; min-height:52px; text-decoration:none; background:var(--ink); color:var(--paper); font-size:.9375rem; transition:background .25s,transform .3s var(--ease),box-shadow .3s; }
+.pill:hover { background:var(--accent); transform:translateY(-3px); box-shadow:0 10px 20px -14px var(--ink); }
+.text-link { display:inline-flex; align-items:center; min-height:44px; font-size:.9375rem; }
+.hero-bottom { display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; padding:21px 0; font-size:.8125rem; color:var(--muted); }
+.focus-strip { background:var(--rose); }
+.focus-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+.focus-item { display:flex; align-items:center; gap:18px; padding:29px 30px; }
+.focus-item:first-child { padding-left:0; }
+.focus-item:last-child { padding-right:0; }
+.focus-item p { font-size:.9375rem; line-height:1.5; }
+.section { padding:112px 0; }
+.section-heading { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:end; margin-bottom:55px; }
+.section-heading .eyebrow { margin-bottom:24px; color:var(--accent); }
+.section-heading h2,.about-copy h2 { font:400 clamp(2.75rem,4.6vw,5rem)/1.12 var(--serif); letter-spacing:-.055em; }
+.section-heading h2 em,.about-copy h2 em { color:var(--accent); font-weight:400; }
+.section-heading>p { max-width:400px; justify-self:end; color:var(--muted); }
+.work-item { transition:background .3s,color .3s; }
+.work-item summary { list-style:none; cursor:pointer; display:block; padding:31px 26px; }
+summary::-webkit-details-marker { display:none; }
+.work-item h3 { display:grid; grid-template-columns:1fr 48px; gap:24px; align-items:center; font:400 clamp(1.65rem,2.9vw,2.8rem)/1.2 var(--serif); letter-spacing:-.025em; text-wrap:pretty; }
+.expand-mark { display:flex; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid var(--line); border-radius:50%; font-size:1.75rem; line-height:1; font-weight:400; transition:transform .35s var(--ease),background .3s; }
+.work-item[open] { background:var(--ink); color:var(--paper); border-radius:18px; margin:12px 0; }
+.work-item[open] summary { padding-top:34px; }
+.work-item[open] .expand-mark { transform:rotate(45deg); background:var(--rose); border-color:var(--rose); color:var(--ink); }
+.work-item[open] :focus-visible { outline-color:var(--rose); }
+.work-body { display:grid; grid-template-columns:1.3fr 1fr; gap:60px; padding:0 26px 37px 26px; }
+.work-body>p { max-width:550px; color:#ebc7d6; }
+.work-meta { padding-left:28px; }
+.work-meta .small-label { color:#ebc7d6; font-size:.75rem; }
+.project-tools { display:flex; flex-wrap:wrap; gap:9px 18px; margin-top:10px; font-size:.9375rem; }
+.work-item:not([open]):hover { background:var(--pink); }
+.experience-section { background:var(--ink); color:var(--paper); border-radius:40px 40px 0 0; }
+.experience-section .section-heading .eyebrow,.experience-section .section-heading h2 em { color:var(--rose); }
+.experience-section .section-heading>p { color:#ebc7d6; }
+.experience { display:grid; grid-template-columns:250px minmax(0,1fr); gap:65px; padding:42px 0; }
+.experience-date { color:var(--rose); font-size:.8125rem; letter-spacing:.03em; padding-top:8px; }
+.experience-title { font-size:1.5rem; font-weight:500; line-height:1.4; }
+.experience-company { color:var(--rose); font-size:.9375rem; margin-top:10px; }
+.experience ul { display:grid; grid-template-columns:1fr 1fr; gap:18px 35px; padding-left:18px; margin:27px 0 0; }
+.experience li { color:#ebc7d6; padding-left:5px; }
+.about-section { background:var(--rose); }
+.about-layout { display:grid; grid-template-columns:1fr 1.4fr; gap:80px; }
+.about-caption { display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; gap:50px; padding-left:30px; }
+.about-signature { font:italic clamp(3.2rem,5vw,5.5rem)/1.1 var(--serif); letter-spacing:-.06em; }
+.about-caption .small-label { margin-bottom:13px; }
+.about-caption .location { font-size:.9375rem; margin-top:20px; }
+.about-copy p { margin-top:26px; max-width:650px; }
+.about-copy h2 { max-width:660px; }
+.skills-heading { margin-bottom:45px; }
+.skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 64px; }
+.skill { padding:29px 0 33px; display:grid; grid-template-columns:1fr; align-content:start; }
+.skill-category { font-size:.75rem; letter-spacing:.06em; color:var(--accent); margin-bottom:13px; }
+.skill h3 { font:400 1.8rem/1.2 var(--serif); letter-spacing:-.02em; margin-bottom:14px; }
+.skill p { color:var(--muted); max-width:550px; }
+.certifications-section { background:var(--rose); }
+.certification-layout { display:grid; grid-template-columns:.9fr 1.1fr; gap:75px; align-items:start; }
+.certification-heading .eyebrow { margin-bottom:24px; color:var(--accent); font-size:.875rem; }
+.certification-heading h2 { font:400 clamp(2.75rem,4.6vw,5rem)/1.12 var(--serif); letter-spacing:-.055em; }
+.certification-heading h2 em { color:var(--accent); font-weight:400; }
+.certification-heading>p:last-child { max-width:360px; margin-top:25px; color:var(--muted); }
+.certification-list { display:grid; gap:35px; list-style:none; padding:8px 0 0; margin:0; }
+.certification-list h3 { font:400 clamp(1.65rem,2.5vw,2.35rem)/1.3 var(--serif); letter-spacing:-.025em; }
+.contact-section { background:var(--pink); }
+.contact-layout { display:grid; grid-template-columns:1fr 1.18fr; gap:75px; align-items:start; }
+.contact-intro { position:sticky; top:135px; }
+.contact-intro .eyebrow { color:var(--accent); margin-bottom:28px; }
+.contact-intro h2 { font:400 clamp(3.2rem,5vw,5.3rem)/1.12 var(--serif); letter-spacing:-.055em; }
+.contact-intro h2 em { color:var(--accent); }
+.contact-intro>p { max-width:400px; color:var(--muted); margin-top:27px; }
+.contact-direct { display:block; font-size:.9375rem; margin-top:25px; overflow-wrap:anywhere; }
+.business-details { margin-top:38px; padding-top:23px; font-size:.9375rem; font-style:normal; color:var(--muted); }
+.business-details strong { color:var(--ink); }
+.contact-form { background:var(--white); border:1px solid var(--line); border-radius:22px; padding:33px; }
+.form-overline { display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between; font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); padding-bottom:20px; margin-bottom:27px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.contact-form label { display:block; font-size:.9375rem; margin-bottom:8px; }
+.contact-form input:not([type=checkbox]),.contact-form textarea { display:block; width:100%; min-width:0; border:1px solid #8d6b79; border-radius:8px; background:var(--white); color:var(--ink); padding:12px 13px; margin-bottom:23px; }
+.contact-form textarea { resize:vertical; min-height:120px; }
+.contact-form input:hover,.contact-form textarea:hover { border-color:var(--accent); }
+.form-note { font-size:.875rem; color:var(--muted); margin:-5px 0 22px; }
+.contact-form .consent-label { display:flex; align-items:flex-start; gap:13px; padding:8px 0; font-size:.875rem; cursor:pointer; }
+.consent-label input { width:22px; height:22px; margin:2px 0 0; flex-shrink:0; accent-color:var(--accent); }
+.form-actions { display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; margin-top:22px; }
+.contact-button { display:inline-flex; justify-content:center; align-items:center; gap:24px; border:1px solid var(--ink); border-radius:999px; padding:13px 21px; min-height:50px; background:var(--ink); color:var(--paper); text-decoration:none; font-size:.9375rem; transition:background .25s,transform .3s var(--ease); }
+.contact-button:hover { background:var(--accent); transform:translateY(-2px); }
+.clear-button { border:0; background:none; color:var(--muted); font-size:.875rem; padding:10px 5px; min-height:44px; text-decoration:underline; text-underline-offset:4px; }
+.draft-result { margin-top:27px; padding-top:25px; }
+.draft-result .small-label { color:var(--accent); margin-bottom:12px; }
+.draft-result .contact-button { margin-top:20px; }
+.draft-result label { margin-top:25px; }
+.policies-section { padding:75px 0; }
+.policy-layout { display:grid; grid-template-columns:.7fr 1.3fr; gap:75px; }
+.policy-heading h2 { font:400 2.6rem/1.2 var(--serif); letter-spacing:-.04em; margin:18px 0; }
+.policy-heading p { color:var(--muted); font-size:.875rem; max-width:340px; }
+.policy-date { margin-top:16px; }
+.policy-list details { scroll-margin-top:110px; }
+.policy-list summary { list-style:none; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:20px 0; cursor:pointer; font-size:1rem; font-weight:600; }
+.policy-symbol { font-size:1.5rem; line-height:1; font-weight:400; transition:transform .25s var(--ease); }
+.policy-list details[open] .policy-symbol { transform:rotate(45deg); }
+.policy-body { color:var(--muted); padding-bottom:26px; }
+.policy-body p+p { margin-top:16px; }
+.policy-body h3 { font-size:1rem; color:var(--ink); margin:20px 0 10px; }
+.policy-body h3:first-child { margin-top:0; }
+.access-note { font-size:.875rem; color:var(--muted); margin-top:30px; }
+.footer { background:var(--ink); color:var(--pink); padding:40px 0 25px; overflow:clip; }
+.footer-top { display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; align-items:center; }
+.footer-policies { display:flex; flex-wrap:wrap; gap:0 25px; }
+.footer-policies a { display:inline-flex; min-height:44px; align-items:center; font-size:.875rem; }
+.back-top { display:inline-flex; min-height:44px; align-items:center; font-size:.875rem; }
+.footer-saying { font:400 clamp(3rem,7.5vw,7.5rem)/1.15 var(--serif); letter-spacing:-.065em; padding:20px 0 35px; }
+.footer-saying em { font-weight:400; color:var(--rose); }
+.footer-bottom { padding-top:23px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:15px; font-size:.8125rem; color:#ebc7d6; }
+.footer :focus-visible,.experience-section :focus-visible { outline-color:var(--rose); }
+@media (prefers-reduced-motion:no-preference) {
+  .hero h1 .line { animation:title-enter 1.05s var(--ease) both; }
+  .hero h1 .line:nth-child(2) { animation-delay:.14s; }
+  .hero h1 .line:nth-child(3) { animation-delay:.26s; }
+  .hero-meta { animation:fade-enter .8s var(--ease) both; }
+  .hero-intro { animation:fade-enter 1s .28s var(--ease) both; }
+  .hero-bottom { animation:fade-enter 1s .45s var(--ease) both; }
+  .focus-item { animation:fade-enter .8s var(--ease) both; animation-delay:calc(.4s + var(--order)*.12s); }
+  .pill span,.contact-button span { display:inline-block; transition:transform .3s var(--ease); }
+  .pill:hover span,.contact-button:hover span { transform:translate(3px,-3px); }
+  .work-item summary .work-title { transition:transform .35s var(--ease); }
+  .work-item summary:hover .work-title { transform:translateX(6px); }
+  .work-body,.policy-body { animation:fade-enter .42s var(--ease) both; }
+  .skill h3 { transition:transform .3s var(--ease),color .3s; }
+  .skill:hover h3 { transform:translateX(6px); color:var(--accent); }
+  @keyframes title-enter { from { opacity:0; transform:translateY(42px); clip-path:inset(0 0 100% 0); } to { opacity:1; transform:none; clip-path:inset(0 0 0 0); } }
+  @keyframes fade-enter { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+}
+html[data-motion=reduced] { scroll-behavior:auto; }
+html[data-motion=reduced] *,html[data-motion=reduced] *::before,html[data-motion=reduced] *::after { animation:none!important; transition:none!important; }
+html[data-motion=reduced] .pill:hover,html[data-motion=reduced] .pill:hover span,html[data-motion=reduced] .contact-button:hover,html[data-motion=reduced] .contact-button:hover span,html[data-motion=reduced] .work-item summary:hover .work-title,html[data-motion=reduced] .skill:hover h3 { transform:none; }
+@media (prefers-reduced-motion:reduce) {
+ html { scroll-behavior:auto; }
+ *,*::before,*::after { animation:none!important; transition:none!important; }
+ .pill:hover,.pill:hover span,.contact-button:hover,.contact-button:hover span,.work-item summary:hover .work-title,.skill:hover h3 { transform:none; }
+}
+@media (min-width:1600px) { .hero h1 { font-size:8.5rem; } }
+@media (max-width:1100px) {
+ .wrap { width:calc(100% - 64px); }
+ .topbar-inner { gap:25px; }
+ .nav-links { gap:20px; }
+ .hero-grid { gap:35px; }
+ .hero h1 { font-size:clamp(4rem,7.8vw,7rem); }
+ .experience { grid-template-columns:200px minmax(0,1fr); gap:40px; }
+ .about-layout,.contact-layout,.policy-layout { gap:45px; }
+ .work-body { gap:30px; padding-left:26px; padding-right:26px; }
+ .contact-form { padding:26px; }
+ .form-row { grid-template-columns:1fr; gap:0; }
+}
+@media (max-width:800px) {
+ html { scroll-padding-top:100px; }
+ .wrap { width:calc(100% - 44px); }
+ .topbar-inner { gap:14px; flex-wrap:wrap; min-height:76px; }
+ .brand-logo { width:76px; height:60px; flex-basis:76px; }
+ .brand-logo img { width:112px; height:112px; }
+ .menu-toggle { display:block; }
+ .nav-links { display:none; position:absolute; left:0; right:0; top:100%; padding:18px 22px 25px; background:var(--paper); flex-direction:column; align-items:stretch; gap:6px; max-height:calc(100dvh - 90px); overflow:auto; }
+ .nav-links.open { display:flex; }
+ .nav-links a { font-size:1rem; min-height:44px; }
+ .hero-meta { gap:12px; flex-wrap:wrap; }
+ .hero-grid { grid-template-columns:1fr; padding:45px 0; gap:33px; }
+ .hero h1 { font-size:clamp(4.4rem,11vw,7rem); }
+ .hero h1 .line { display:inline; }
+ .hero h1 .line::after { content:" "; }
+ .hero h1 .line:last-child { display:block; }
+ .hero-intro { display:grid; grid-template-columns:1fr 1fr; gap:0 35px; padding:0; }
+ .hero-intro .name { grid-column:1/-1; }
+ .hero-actions { margin:0; align-content:start; align-items:flex-start; }
+ .hero-intro p { max-width:100%; }
+ .focus-item { padding:23px 17px; gap:12px; }
+ .focus-item p { font-size:.875rem; }
+ .section { padding:75px 0; }
+ .section-heading { gap:25px; margin-bottom:36px; }
+ .section-heading h2,.about-copy h2 { font-size:3.1rem; }
+ .work-item summary { padding:26px 18px; } .work-item h3 { grid-template-columns:1fr 44px; gap:18px; }
+ .work-body { grid-template-columns:1fr; gap:25px; padding:0 18px 30px 18px; }
+ .work-meta { padding-left:0; }
+ .experience-section { border-radius:25px 25px 0 0; }
+ .experience { grid-template-columns:1fr; gap:15px; padding:33px 0; }
+ .experience-date { padding:0; }
+ .about-layout { gap:35px; grid-template-columns:.7fr 1.3fr; }
+ .about-caption { padding-left:20px; }
+ .skills-grid { gap:0 36px; }
+ .certification-layout { grid-template-columns:1fr; gap:36px; }
+ .certification-heading h2 { font-size:3.1rem; }
+ .certification-list { padding-top:0; gap:28px; }
+ .contact-layout { grid-template-columns:1fr; gap:40px; }
+ .contact-intro { position:static; }
+ .contact-intro h2 { font-size:3.5rem; max-width:600px; }
+ .contact-intro>p { max-width:550px; }
+ .contact-form { padding:30px; }
+ .form-row { grid-template-columns:1fr 1fr; gap:22px; }
+ .policy-layout { grid-template-columns:1fr; gap:32px; }
+ .policy-heading p { max-width:550px; }
+ .policies-section { padding:60px 0; }
+}
+@media (max-width:520px) {
+ .wrap { width:calc(100% - 36px); }
+ .topbar-inner { gap:9px; }
+ .menu-toggle { padding:8px 12px; font-size:.8125rem; }
+ .hero { padding-top:25px; }
+ .hero-meta { align-items:start; flex-direction:column; gap:7px; padding-bottom:20px; }
+ .hero-meta .eyebrow { font-size:.75rem; }
+ .hero h1 { font-size:clamp(3.6rem,13.5vw,5.6rem); }
+ .hero h1 .line { display:block; }
+ .hero-grid { padding:35px 0; }
+ .hero-intro { display:block; }
+ .hero-actions { margin-top:25px; align-items:center; }
+ .hero-bottom { padding:19px 0 23px; font-size:.75rem; gap:8px; }
+ .focus-grid { grid-template-columns:1fr; }
+ .focus-item,.focus-item:first-child,.focus-item:last-child { padding:17px 0; gap:18px; }
+ .focus-item p { font-size:.9375rem; }
+ .section { padding:58px 0; }
+ .section-heading { grid-template-columns:1fr; gap:22px; margin-bottom:30px; }
+ .section-heading>p { justify-self:start; }
+ .section-heading .eyebrow { margin-bottom:18px; }
+ .section-heading h2,.about-copy h2 { font-size:2.8rem; }
+ .work-item summary { padding:23px 12px; } .work-item h3 { grid-template-columns:1fr 36px; gap:13px; }
+ .work-item h3 { font-size:1.6rem; }
+ .expand-mark { width:34px; height:34px; font-size:1.4rem; }
+ .work-body { padding:0 12px 28px 12px; }
+ .work-item[open] { border-radius:12px; }
+ .experience ul { grid-template-columns:1fr; gap:15px; }
+ .experience-title { font-size:1.3rem; }
+ .about-layout { grid-template-columns:1fr; gap:38px; }
+ .about-caption { flex-direction:row; flex-wrap:wrap; justify-content:space-between; align-items:end; gap:22px; padding-left:18px; }
+ .about-signature { font-size:3.5rem; }
+ .about-caption .location { margin-top:0; }
+ .skills-grid { grid-template-columns:1fr; }
+ .contact-intro h2 { font-size:3.3rem; }
+ .contact-form { padding:23px 19px; border-radius:15px; }
+ .form-row { grid-template-columns:1fr; gap:0; }
+ .form-actions { gap:14px; }
+ .policy-heading h2 { font-size:2.3rem; }
+ .footer { padding-top:25px; }
+ .footer-policies { gap:0 16px; }
+ .footer-saying { font-size:clamp(2.7rem,10vw,4rem); padding:22px 0 30px; }
+ .footer-bottom { font-size:.75rem; }
+}
+@media (max-width:360px) { .topbar-inner { gap:7px; } .menu-toggle { padding-inline:10px; } }
+@media print {
+ .topbar,.hero-actions,.contact-form,.skip-link,.footer-policies,.back-top { display:none; }
+ body,.hero,.focus-strip,.experience-section,.about-section,.contact-section,.footer { background:white; color:#222; }
+ .wrap { width:100%; }
+ .section { padding:30px 0; }
+ .work-item[open] { background:white; color:#222; }
+ .work-body>p,.experience li,.experience-date,.experience-company { color:#333; }
+ .contact-intro { position:static; }
+ .experience,.skill,details { break-inside:avoid; }
+ *,*::before,*::after { animation:none!important; transition:none!important; }
+}
+
+/* Cookie choices use the same type and palette as the page. */
+.cookie-settings { border:0; background:none; padding:10px 0; min-height:44px; color:inherit; text-decoration:underline; text-underline-offset:5px; font-size:.875rem; }
+.cookie-dialog { position:fixed; inset:auto 20px 20px auto; width:min(560px,calc(100% - 40px)); max-height:calc(100dvh - 40px); overflow:auto; margin:0; border:1px solid var(--accent); border-radius:20px; padding:30px; background:var(--paper); color:var(--ink); box-shadow:0 15px 60px #3c142533; }
+.cookie-dialog::backdrop { background:#3c14254d; }
+.cookie-dialog h2 { font:400 2.25rem/1.15 var(--serif); letter-spacing:-.04em; padding-right:28px; margin:0 0 18px; }
+.cookie-dialog p { font-size:.9375rem; margin:0 0 15px; color:var(--muted); }
+.motion-preference { display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin:20px 0; }
+.motion-preference label { font-size:.875rem; }
+.motion-preference select { flex:1 1 210px; min-width:0; min-height:44px; padding:9px 12px; border:1px solid #8d6b79; border-radius:8px; background:var(--white); color:var(--ink); font:inherit; font-size:.875rem; }
+.cookie-dialog .cookie-policy-link { display:inline-flex; align-items:center; min-height:44px; font-size:.875rem; margin-bottom:10px; }
+.cookie-close { position:absolute; top:17px; right:17px; min-width:44px; min-height:44px; border:0; border-radius:50%; background:transparent; color:var(--ink); font-size:1.7rem; }
+.cookie-actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.cookie-actions button { min-height:48px; border:1px solid var(--accent); border-radius:999px; padding:11px 15px; background:var(--pink); color:var(--ink); font-size:.875rem; }
+.cookie-actions button:hover { background:var(--rose); }
+.cookie-dialog[open] { animation:fade-enter .3s var(--ease) both; }
+@media(max-width:520px) { .cookie-dialog { inset:auto 12px 12px 12px; width:calc(100% - 24px); max-height:calc(100dvh - 24px); padding:26px 21px; } .cookie-dialog h2 { font-size:2rem; } .cookie-actions { grid-template-columns:1fr; } }
+@media print { .cookie-dialog,.cookie-settings { display:none!important; } }
+
+</style>
+<noscript><style>@media(max-width:800px){.menu-toggle{display:none}.topbar{position:relative}.nav-links{display:flex;position:static;width:100%;padding:0 0 18px;max-height:none;border:0}}</style></noscript>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar"><div class="wrap topbar-inner">
+<a class="brand-logo" href="#main" aria-label="Francese Vivien Alba, home"><img src="assets/fva-monogram.png" width="1254" height="1254" alt="" decoding="async"></a>
+<nav aria-label="Main navigation"><ul id="navLinks" class="nav-links"><li><a href="#projects">Selected work</a></li><li><a href="#experience">Experience</a></li><li><a href="#about">About</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+<button class="menu-toggle" id="menuToggle" type="button" aria-controls="navLinks" aria-expanded="false">Menu</button>
+</div></header>
+<main id="main" tabindex="-1">
+<section class="hero" aria-labelledby="heroTitle"><div class="wrap">
+<div class="hero-meta"><p class="eyebrow">Remote operations &amp; administrative support</p><span>Manila, Philippines · Working remotely</span></div>
+<div class="hero-grid"><h1 id="heroTitle"><span class="line">Great work</span> <span class="line">starts with</span> <span class="line"><em>the little things.</em></span></h1>
+<div class="hero-intro"><p class="name">I'm Francese Vivien Alba.</p><p>I support remote teams through organized operations, thoughtful client management, and AI-powered workflows.</p><div class="hero-actions"><a class="pill" href="#projects">Explore my work <span aria-hidden="true">↘</span></a><a class="text-link" href="#contact">Let's connect</a></div></div></div>
+<div class="hero-bottom"><span>Operations · Systems · People</span><span>Remote / Flexible time-zone coverage</span></div>
+</div></section>
+<div class="focus-strip"><div class="wrap focus-grid"><div class="focus-item" style="--order:0"><p>Operations &amp;<br>administrative support</p></div><div class="focus-item" style="--order:1"><p>AI &amp;<br>workflow automation</p></div><div class="focus-item" style="--order:2"><p>Client &amp;<br>community management</p></div></div></div>
+<section id="projects" class="section" tabindex="-1"><div class="wrap"><div class="section-heading" data-reveal><div><p class="eyebrow">Selected work</p><h2>Behind the scenes.<br><em>Into the details.</em></h2></div><p>Systems and workflows I've worked on across operations and client support. Open a project to explore.</p></div><div class="work-list" data-reveal><details class="work-item" id="project-1" open>
+<summary><h3><span class="work-title">Client Onboarding Automation</span><span class="expand-mark" aria-hidden="true">+</span></h3></summary>
+<div class="work-body"><p>Built a client intake workflow for coaching programs, connecting onboarding tasks and member setup.</p><div class="work-meta"><span class="small-label">Tools &amp; focus</span><div class="project-tools"><span>Notion</span><span>Trainerize</span></div></div></div>
+</details>
+<details class="work-item" id="project-2" >
+<summary><h3><span class="work-title">Instagram Content System</span><span class="expand-mark" aria-hidden="true">+</span></h3></summary>
+<div class="work-body"><p>Built a repeatable content pipeline for captions, carousels, and stories while keeping posting consistent across accounts.</p><div class="work-meta"><span class="small-label">Tools &amp; focus</span><div class="project-tools"><span>Canva</span><span>Claude AI</span></div></div></div>
+</details>
+<details class="work-item" id="project-3" >
+<summary><h3><span class="work-title">Client Progress Tracker</span><span class="expand-mark" aria-hidden="true">+</span></h3></summary>
+<div class="work-body"><p>Designed a Google Sheets and Notion tracker for coaches to review client adherence and progress.</p><div class="work-meta"><span class="small-label">Tools &amp; focus</span><div class="project-tools"><span>Google Sheets</span><span>Notion</span></div></div></div>
+</details>
+<details class="work-item" id="project-4" >
+<summary><h3><span class="work-title">Paperless Operations Overhaul</span><span class="expand-mark" aria-hidden="true">+</span></h3></summary>
+<div class="work-body"><p>Moved booking and records processes into a digital workflow, with electronic booking and organized digital records.</p><div class="work-meta"><span class="small-label">Tools &amp; focus</span><div class="project-tools"><span>Digital Records</span><span>Operations</span></div></div></div>
+</details>
+<details class="work-item" id="project-5" >
+<summary><h3><span class="work-title">Email Workflow Automation</span><span class="expand-mark" aria-hidden="true">+</span></h3></summary>
+<div class="work-body"><p>Created templated, AI-assisted responses for recurring client questions while maintaining a personal tone.</p><div class="work-meta"><span class="small-label">Tools &amp; focus</span><div class="project-tools"><span>Claude AI</span><span>Automation</span></div></div></div>
+</details>
+<details class="work-item" id="project-6" >
+<summary><h3><span class="work-title">Marketing Visuals</span><span class="expand-mark" aria-hidden="true">+</span></h3></summary>
+<div class="work-body"><p>Produced photo and video assets for social promotions, from editing through final campaign-ready export.</p><div class="work-meta"><span class="small-label">Tools &amp; focus</span><div class="project-tools"><span>Canva</span><span>Adobe</span></div></div></div>
+</details></div></div></section>
+<section id="experience" class="section experience-section" tabindex="-1"><div class="wrap"><div class="section-heading" data-reveal><div><p class="eyebrow">Experience</p><h2>Behind <em>the work.</em></h2></div><p>My background spans client account management, digital record keeping, administrative support and social media operations.</p></div><div class="experience-list">
+
+      <div class="experience">
+
+        <div class="experience-date">
+          OCT 2025 to JUN 2026
+        </div>
+
+        <div>
+
+          <h3 class="experience-title">
+            AI Operations & Community Operations Specialist
+          </h3>
+
+          <div class="experience-company">
+            NoStagnation Academy / Auramax Method, Remote
+          </div>
+
+          <ul>
+
+            <li>
+              Managed client accounts in Trainerize,
+              tracking progress and delivering feedback
+              across coaching programs.
+            </li>
+
+            <li>
+              Built scheduling and progress-tracking
+              systems using Notion and Google Sheets.
+            </li>
+
+            <li>
+              Managed social media operations across
+              multiple Instagram accounts.
+            </li>
+
+            <li>
+              Designed AI-powered workflows using Claude AI
+              for captions, carousel copy, and client summaries.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="experience">
+
+        <div class="experience-date">
+          NOV 2023 to AUG 2025
+        </div>
+
+        <div>
+
+          <h3 class="experience-title">
+            Data & Operations Support
+          </h3>
+
+          <div class="experience-company">
+            SailMark Heavy Equipment Sales and Rentals, Manila
+          </div>
+
+          <ul>
+
+            <li>
+              Led the transition to a paperless practice,
+              implementing an electronic booking system.
+            </li>
+
+            <li>
+              Maintained accurate records across digital
+              databases and spreadsheets.
+            </li>
+
+            <li>
+              Managed professional email correspondence
+              and daily administrative operations.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="experience">
+
+        <div class="experience-date">
+          FEB 2021 to MAR 2022
+        </div>
+
+        <div>
+
+          <h3 class="experience-title">
+            Administrative & Creative Support Specialist
+          </h3>
+
+          <div class="experience-company">
+            Independent Contractor, Upwork, Remote
+          </div>
+
+          <ul>
+
+            <li>
+              Managed emails, phone calls, and appointment
+              scheduling for clients.
+            </li>
+
+            <li>
+              Organized digital files and improved
+              document accessibility.
+            </li>
+
+            <li>
+              Designed presentations and edited
+              photo/video content for marketing use.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div></div></section>
+<section id="about" class="section about-section" tabindex="-1"><div class="wrap about-layout"><div class="about-caption" data-reveal><div><p class="small-label">A little about me</p><p class="about-signature">Vivien<br>Alba.</p></div><p class="location">Based in Manila, Philippines<br>Remote · Flexible time zones</p></div><div class="about-copy" data-reveal><h2>I make the messy<br>stuff <em>feel simple.</em></h2><p>I build order into remote operations, turning scattered files, inboxes, client conversations, and repetitive processes into systems that are easier to manage.</p><p>My background spans client account management, digital record keeping, administrative support, social media operations, and AI-powered workflow automation.</p><p>I'm at my best when a team needs someone who can <strong>take ownership, organize the details, and quietly keep things moving.</strong></p></div></div></section>
+<section id="skills" class="section" tabindex="-1"><div class="wrap"><div class="section-heading skills-heading" data-reveal><div><p class="eyebrow">Skills &amp; tools</p><h2>A practical<br><em>set of skills.</em></h2></div><p>A mix of operations, technology, communication, and creative skills.</p></div><div class="skills-grid">
+
+      <div class="skill">
+
+        <div class="skill-category">
+          OPERATIONS
+        </div>
+
+        <h3>
+          Operations & Admin
+        </h3>
+
+        <p>
+          Digital record keeping, data management,
+          email management, scheduling, client support,
+          project coordination, and administrative operations.
+        </p>
+
+      </div>
+
+      <div class="skill">
+
+        <div class="skill-category">
+          CRM
+        </div>
+
+        <h3>
+          CRM & Workflow
+        </h3>
+
+        <p>
+          GoHighLevel, HubSpot, Trainerize,
+          Monday.com, ClickUp, and GitHub.
+        </p>
+
+      </div>
+
+      <div class="skill">
+
+        <div class="skill-category">
+          PRODUCTIVITY
+        </div>
+
+        <h3>
+          Productivity
+        </h3>
+
+        <p>
+          Notion, Google Sheets, Google Slides,
+          Microsoft Excel, Word, PowerPoint,
+          Teams, and Microsoft 365.
+        </p>
+
+      </div>
+
+      <div class="skill">
+
+        <div class="skill-category">
+          CREATIVE
+        </div>
+
+        <h3>
+          Content & Design
+        </h3>
+
+        <p>
+          Canva, Adobe Photoshop, content creation,
+          video editing, social media management,
+          and community management.
+        </p>
+
+      </div>
+
+      <div class="skill">
+
+        <div class="skill-category">
+          AI
+        </div>
+
+        <h3>
+          AI & Automation
+        </h3>
+
+        <p>
+          Claude AI, ElevenLabs, n8n, Make.com,
+          GoHighLevel automation, and prompt engineering.
+        </p>
+
+      </div>
+
+      <div class="skill">
+
+        <div class="skill-category">
+          REMOTE
+        </div>
+
+        <h3>
+          Virtual Assistance
+        </h3>
+
+        <p>
+          Remote client support, cross-platform
+          coordination, project management, and
+          flexible time-zone coverage.
+        </p>
+
+      </div>
+
+    </div></div></section>
+<section id="certifications" class="section certifications-section" tabindex="-1" aria-labelledby="certificationsTitle">
+<div class="wrap certification-layout">
+<div class="certification-heading" data-reveal><p class="eyebrow">Certifications</p><h2 id="certificationsTitle">Always <em>learning.</em></h2><p>Formal training supporting my work across AI, automation, and digital operations.</p></div>
+<ul class="certification-list" data-reveal>
+<li><h3>IBM AI Developer Professional</h3></li>
+<li><h3>IBM RAG &amp; Agentic AI Professional</h3></li>
+<li><h3>Social Media Marketing Certification</h3></li>
+</ul>
+</div>
+</section>
+<section id="contact" class="section contact-section" tabindex="-1"><div class="wrap contact-layout"><div class="contact-intro" data-reveal><p class="eyebrow">Let's connect</p><h2>What can I<br><em>take off your plate?</em></h2><p>Tell me a little about your business, your current challenge, or the kind of support you're looking for.</p><a class="contact-direct" href="mailto:vivienalba1016@gmail.com">vivienalba1016@gmail.com</a><address class="business-details"><strong>Francese Vivien Alba</strong><br>Remote operations &amp; administrative support<br>Manila, Philippines</address></div><div><div class="contact-form">
+<p id="tallyNotice">Send your inquiry directly through Tally. Your answers will be stored in Vivien’s Tally account and used to respond to your inquiry. Please leave out sensitive information and confidential client records. <a href="#privacy" class="policy-link">Read the privacy policy</a>.</p>
+<form id="tallyConsentForm" hidden>
+<label class="consent-label"><input type="checkbox" id="tallyConsent" required><span>I consent to using Tally for this inquiry and to Vivien using the information I submit to respond. This does not subscribe me to marketing.</span></label>
+<button type="submit" class="contact-button">Open contact form</button>
+<p class="form-note" style="margin-top:18px">Opening the form connects your browser to Tally. Cookie preferences for motion are separate from this choice.</p>
+</form>
+<div id="tallyEmbed" hidden aria-label="Contact form"><p id="tallyStatus" role="status" tabindex="-1">Loading contact form…</p></div>
+<template id="tallyTemplate"><iframe data-tally-src="https://tally.so/embed/LZxNbv?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="1529" style="border:0;display:block" title="Let’s Work Together, contact form" referrerpolicy="no-referrer"></iframe></template>
+<p style="margin-top:20px;font-size:.875rem">Prefer another window? <a href="https://tally.so/r/LZxNbv" target="_blank" rel="noopener noreferrer">Open the Tally form in a new tab</a>.</p>
+<noscript><p>Use the Tally link above to submit your inquiry, or email vivienalba1016@gmail.com.</p></noscript>
+</div></div></div></section>
+<section id="policies" class="policies-section" tabindex="-1"><div class="wrap"><div class="policy-layout"><div class="policy-heading"><p class="eyebrow">Website information</p><h2>Before we connect.</h2><p>How this website works, what happens to your inquiry, and the terms for using this portfolio.</p><p class="policy-date">Updated 8 September 2026</p></div><div class="policy-list">
+      <details id="privacy">
+        <summary><span> Privacy policy</span><span class="policy-symbol" aria-hidden="true">+</span></summary>
+        <div class="policy-body">
+          <h3>Your inquiry</h3>
+          <p>This portfolio belongs to Francese Vivien Alba. The contact form is provided by Tally. Loading it connects your browser to Tally, which may process technical connection and usage information. The form collects the contact details and inquiry answers you choose to provide. Please leave out sensitive information, client records, passwords and payment details.</p>
+          <p>When you submit the form, your answers are sent to and stored in Vivien’s Tally account. Tally email notifications also provide submission information through the owner’s configured notification settings. Vivien uses inquiries to respond and discuss requested support. No marketing subscription is included. You can instead contact Vivien directly at vivienalba1016@gmail.com.</p>
+          <h3>Your choices</h3>
+          <p>You can choose not to open or submit the form. Closing it does not delete information already processed by Tally. For questions about a sent message, access or correction requests, deletion requests, objections, or withdrawal of consent where applicable, email Vivien at the address above. Some requests may be subject to legal exceptions; withdrawing consent does not undo earlier lawful processing. You may also contact the Philippine National Privacy Commission about a privacy concern.</p>
+          <h3>Services and retention</h3>
+          <p>Tally provides the form and submission storage; email providers handle notification and correspondence copies. Processing may occur outside your country. See <a href="https://tally.so/help/gdpr" target="_blank" rel="noopener noreferrer">Tally’s data-protection information</a>. Ask Vivien about retention before submitting if you need a specific period. This page does not specify a deletion schedule for Tally submissions or email copies.</p>
+          <p>With your cookie acceptance, the page can remember your motion preference. The cookie policy explains the preference cookies and how to withdraw acceptance. The Tally embed and its loading script are requested only after you choose to open the form. Opening the standalone Tally link also connects to Tally. Tally’s behavior and any form integrations are separate from the page’s motion cookies. Hosting and any access sign-in are provided separately and may process connection, access and security data under their provider's policies.</p>
+        </div>
+      </details>
+      <details id="terms">
+        <summary><span> Terms &amp; conditions</span><span class="policy-symbol" aria-hidden="true">+</span></summary>
+        <div class="policy-body">
+          <p>This is a professional portfolio and inquiry channel. Descriptions of experience and projects provide background; they are not a promise of specific results. Sending an inquiry does not create a service agreement, booking, or obligation to purchase.</p>
+          <p>Any paid engagement needs a separate agreement covering scope, deliverables, fees, schedule and cancellation terms. No purchase or payment is accepted on this website. Applicable consumer and privacy rights are unaffected by these notices.</p>
+          <p>Company and product names identify work history or tools used. Their mention does not imply sponsorship, endorsement or a current partnership. Do not reuse confidential client material or assume permission to republish portfolio content; contact Vivien to discuss reuse.</p>
+        </div>
+      </details>
+      <details id="cookies">
+        <summary><span> Cookie policy</span><span class="policy-symbol" aria-hidden="true">+</span></summary>
+        <div class="policy-body">
+          <p>This portfolio uses a cookie to record your cookie choice after you accept or reject. If you accept optional cookies, a second cookie remembers your motion preference. The contact section includes an on-demand Tally form. After you choose to open it, Tally controls the embedded form’s processing and any storage it uses. The motion-cookie buttons do not grant consent for additional marketing or tracking services. Submissions are stored through Tally, rather than in the portfolio’s own browser storage.</p>
+          <p>The cookie notice offers Accept cookies and Reject optional cookies. The first-party cookie <code>vva_cookie_choice</code> records that decision for up to 180 days. Only after acceptance, <code>vva_motion</code> stores your motion preference for up to 180 days from its latest update. These cookies contain preference values, not your contact details. Your browser may block or remove them sooner. The hosting service and any sign-in screen are separate and may use technology needed to serve or control access to the website.</p>
+          <p>Use Cookie preferences in the footer to change your choice or animation preference. Rejecting deletes the optional motion cookie; your current motion setting then lasts only for this visit. Your device’s reduced-motion preference always takes priority. Closing the notice without choosing does not grant consent. Email links open your email application, whose own policies apply. Any future tracking requires a new assessment and appropriate controls before it is enabled.</p>
+        </div>
+      </details>
+      <details id="refunds">
+        <summary><span> Refund policy</span><span class="policy-symbol" aria-hidden="true">+</span></summary>
+        <div class="policy-body">
+          <p>This portfolio has no checkout and does not collect payments. An inquiry is free and does not make a booking.</p>
+          <p>Payment, cancellation and refund arrangements for any future service must be provided in the relevant agreement before payment. No blanket “no refund” condition is imposed by this website. Mandatory rights under applicable law remain available.</p>
+          <p>For a question or complaint about an engagement, contact vivienalba1016@gmail.com and include only the details needed to identify the matter.</p>
+        </div>
+      </details>
+    </div></div><p class="access-note">Animations follow your device preferences. For help using this page, <a href="mailto:vivienalba1016@gmail.com?subject=Website%20accessibility">report an accessibility issue by email</a>.</p></div></section>
+</main>
+<footer class="footer"><div class="wrap"><p class="footer-saying">Make room for<br><em>what matters.</em></p><div class="footer-top"><nav class="footer-policies" aria-label="Website policies"><a href="#privacy" class="policy-link">Privacy policy</a><a href="#terms" class="policy-link">Terms &amp; conditions</a><a href="#cookies" class="policy-link">Cookie policy</a><a href="#refunds" class="policy-link">Refund policy</a><button type="button" class="cookie-settings" id="cookieSettings" hidden>Cookie preferences</button></nav><a class="back-top" href="#main">Back to top ↑</a></div><div class="footer-bottom"><span>© 2026 Francese Vivien Alba</span><a href="mailto:vivienalba1016@gmail.com" style="overflow-wrap:anywhere">vivienalba1016@gmail.com</a><span>Manila, Philippines · Remote</span></div></div></footer>
+<dialog id="cookieDialog" class="cookie-dialog" aria-labelledby="cookieTitle" aria-describedby="cookieDescription">
+<button id="cookieClose" class="cookie-close" type="button" aria-label="Close cookie notice">×</button>
+<h2 id="cookieTitle" tabindex="-1">Do you accept cookies?</h2>
+<p id="cookieDescription">An optional cookie can remember your motion setting for your next visit.</p>
+<div class="motion-preference"><label for="motionPreference">Animations</label><select id="motionPreference" aria-describedby="motionHelp"><option value="device">Follow device setting</option><option value="reduced">Use fewer animations</option></select></div>
+<p id="motionHelp">Changes apply now. Accept cookies to remember your choice. Your device’s reduced motion setting always takes priority.</p>
+<p>Your cookie choice is saved for up to 180 days when your browser allows it. You can change your mind through Cookie preferences in the footer.</p>
+<a href="#cookies" class="policy-link cookie-policy-link">Read the cookie policy</a>
+<div class="cookie-actions"><button id="acceptCookies" type="button">Accept cookies</button><button id="rejectCookies" type="button">Reject optional cookies</button></div>
+</dialog>
+<script>
+(() => {
+  const cookieLifetime = 180 * 24 * 60 * 60;
+  function readCookie(name) {
+    try {
+      const entry = document.cookie.split('; ').find(part => part.startsWith(name + '='));
+      return entry ? decodeURIComponent(entry.slice(name.length + 1)) : null;
+    } catch { return null; }
+  }
+  function writeCookie(name, value, seconds = cookieLifetime) {
+    try {
+      document.cookie = name + '=' + encodeURIComponent(value) + '; Max-Age=' + seconds + '; Path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+    } catch { /* The page still works when browser storage is unavailable. */ }
+  }
+  let cookieChoice = typeof document.getElementById('cookieDialog').showModal === 'function' ? readCookie('vva_cookie_choice') : null;
+  if (!['accepted','rejected'].includes(cookieChoice)) cookieChoice = null;
+  const savedMotion = cookieChoice === 'accepted' ? readCookie('vva_motion') : null;
+  if (cookieChoice !== 'accepted') writeCookie('vva_motion', '', 0);
+  let preferredReduced = savedMotion === 'reduced';
+  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const motionPreference = document.getElementById('motionPreference');
+  let reduced = media.matches || preferredReduced;
+  let observer;
+  const seen = new WeakSet();
+  const playing = new Set();
+  const targets = [...document.querySelectorAll('[data-reveal],.experience,.skill')];
+  function cancelMotion() {
+    if (observer) observer.disconnect();
+    for (const animation of playing) animation.cancel();
+    playing.clear();
+  }
+  function startReveals() {
+    if (observer) observer.disconnect();
+    if (reduced || !('IntersectionObserver' in window)) return;
+    observer = new IntersectionObserver(entries => {
+      let order = 0;
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        if (seen.has(entry.target)) continue;
+        seen.add(entry.target);
+        if (typeof entry.target.animate !== 'function') continue;
+        const anim = entry.target.animate([{opacity:.15,transform:'translateY(28px)'},{opacity:1,transform:'translateY(0)'}], {duration:800,delay:Math.min(order++*85,255),easing:'cubic-bezier(.2,.75,.2,1)',fill:'backwards'});
+        playing.add(anim); anim.onfinish = anim.oncancel = () => playing.delete(anim);
+      }
+    },{threshold:.08});
+    targets.forEach(target => { if (!seen.has(target)) observer.observe(target); });
+  }
+  function syncMotion() {
+    document.documentElement.dataset.motion = reduced ? 'reduced' : 'full';
+    motionPreference.value = preferredReduced ? 'reduced' : 'device';
+    if (reduced) cancelMotion(); else startReveals();
+  }
+  motionPreference.addEventListener('change',() => { preferredReduced = motionPreference.value === 'reduced'; reduced = media.matches || preferredReduced; if (cookieChoice === 'accepted') writeCookie('vva_motion', preferredReduced ? 'reduced' : 'device'); syncMotion(); });
+  if (media.addEventListener) media.addEventListener('change',() => { reduced = media.matches || preferredReduced; syncMotion(); });
+  syncMotion();
+  window.addEventListener('beforeprint',cancelMotion);
+  window.addEventListener('afterprint',startReveals);
+
+  const menu = document.getElementById('menuToggle');
+  const nav = document.getElementById('navLinks');
+  const mobile = window.matchMedia('(max-width:800px)');
+  function closeMenu(returnFocus=false) {
+    nav.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.textContent='Menu';
+    if (returnFocus) menu.focus();
+  }
+  menu.addEventListener('click',() => {
+    const open=nav.classList.toggle('open'); menu.setAttribute('aria-expanded',String(open)); menu.textContent=open?'Close':'Menu';
+  });
+  document.addEventListener('keydown',event => { if(event.key==='Escape' && nav.classList.contains('open')) closeMenu(true); });
+  document.addEventListener('click',event => { if(!event.target.closest('.topbar')) closeMenu(); });
+  document.addEventListener('focusin',event => { if(!event.target.closest('.topbar')) closeMenu(); });
+  if (mobile.addEventListener) mobile.addEventListener('change',() => closeMenu());
+  nav.addEventListener('click',event => {
+    const link=event.target.closest('a'); if(!link) return;
+    const section=document.getElementById(link.hash.slice(1)); closeMenu();
+    if(section) section.focus({preventScroll:true});
+  });
+  const links=[...nav.querySelectorAll('a')];
+  const sections=[...document.querySelectorAll('section[id]')];
+  let pending=false;
+  function updateScroll() {
+    let current='';
+    sections.forEach(section=>{ if(section.getBoundingClientRect().top<=180) current=section.id; });
+    links.forEach(link=>{if(link.hash==='#'+current) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current');});
+    pending=false;
+  }
+  window.addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(updateScroll);}},{passive:true});
+  window.addEventListener('resize',updateScroll);
+  document.querySelectorAll('details').forEach(detail=>detail.addEventListener('toggle',updateScroll));
+  updateScroll();
+
+  const cookieDialog = document.getElementById('cookieDialog');
+  const cookieSettings = document.getElementById('cookieSettings');
+  function showCookieChoices() {
+    if (typeof cookieDialog.showModal !== 'function') return;
+    if (!cookieDialog.open) cookieDialog.showModal();
+    document.getElementById('cookieTitle').focus();
+  }
+  function chooseCookies(choice) {
+    cookieChoice = choice;
+    writeCookie('vva_cookie_choice', choice);
+    if (choice === 'accepted') {
+      writeCookie('vva_motion', preferredReduced ? 'reduced' : 'device');
+    } else writeCookie('vva_motion', '', 0);
+    cookieDialog.close();
+  }
+  if (typeof cookieDialog.showModal === 'function') {
+    cookieSettings.hidden = false;
+    cookieSettings.addEventListener('click', showCookieChoices);
+    document.getElementById('acceptCookies').addEventListener('click', () => chooseCookies('accepted'));
+    document.getElementById('rejectCookies').addEventListener('click', () => chooseCookies('rejected'));
+    document.getElementById('cookieClose').addEventListener('click', () => cookieDialog.close());
+    if (!cookieChoice) showCookieChoices();
+  }
+
+  function openPolicyFromHash() {
+    const target=document.getElementById(location.hash.slice(1));
+    if(target && target.matches('details')) target.open=true;
+  }
+  document.querySelectorAll('.policy-link').forEach(link=>link.addEventListener('click',()=>{
+    if (cookieDialog.open) cookieDialog.close();
+    const detail=document.getElementById(link.hash.slice(1));
+    if(detail){detail.open=true;detail.querySelector('summary').focus({preventScroll:true});}
+  }));
+  window.addEventListener('hashchange',openPolicyFromHash); openPolicyFromHash();
+  const consentForm = document.getElementById('tallyConsentForm');
+  const embed = document.getElementById('tallyEmbed');
+  const tallyStatus = document.getElementById('tallyStatus');
+  consentForm.hidden = false;
+  consentForm.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!consentForm.reportValidity()) return;
+    consentForm.hidden = true;
+    embed.hidden = false;
+    embed.appendChild(document.getElementById('tallyTemplate').content.cloneNode(true));
+    const frame = embed.querySelector('iframe');
+    tallyStatus.focus({preventScroll:true});
+    frame.addEventListener('load', () => { tallyStatus.textContent = 'Complete the form below and select Submit to send your inquiry.'; }, {once:true});
+    function loadTally() {
+      if (typeof window.Tally !== 'undefined') window.Tally.loadEmbeds();
+      else if (!frame.getAttribute('src')) frame.src = frame.dataset.tallySrc;
+    }
+    if (typeof window.Tally !== 'undefined') loadTally();
+    else {
+      const widget = document.createElement('script');
+      widget.src = 'https://tally.so/widgets/embed.js';
+      widget.onload = loadTally;
+      widget.onerror = loadTally;
+      document.body.appendChild(widget);
+    }
+  });
+
+})();
+</script></body></html>
